@@ -12,7 +12,7 @@ Meaning you don't write method bodies in the header file (although you can, but 
 
 Here's an example class:
 
-```
+```cpp
 class person {
 public:
   string name;
@@ -24,7 +24,7 @@ public:
 ```
 And here's what you write in the `*.cpp` file:
 
-```
+```cpp
 void person::say_hello() {
   printf("Hello there!\n");
 }
@@ -42,14 +42,14 @@ would be written as `System::Collection::Generic::List` in C++.
 
 `.` is the **direct component selector** as you know it from C, meaning value instances of classes are typically accessed with it:
 
-```
+```cpp
 person p("Niko");
 p.say_hello();
 ```
 
 `->` is the **indirect component selector**, also as you know it from C, meaning reference types are typically accessed with it:
 
-```
+```cpp
 person *p = new person("Niko");
 p->say_hello();
 ```
@@ -63,7 +63,7 @@ So as you saw in the section above, C++ lets you create objects in two different
 
 The main difference is that value instances get collected at the end of a scope, while reference instances stick around afterwards.
 
-```
+```cpp
 void example() {
   person p1("Niko"); // value instance
   person *p2 = new person("Anders"); // reference instance
@@ -81,7 +81,7 @@ Creating a reference instance is just like how it is in C#, except you need to d
 
 In C++ making a new instance of a class without any input parameters works like this:
 
-```
+```cpp
 person p1;
 person *p2 = new person;
 ```
@@ -93,7 +93,7 @@ Alright, so remember how in C you had `malloc` for allocation and `free` for dea
 
 C++ uses `new` for allocation, and `delete` to deallocate.
 
-```
+```cpp
 person *p = new person("Niko");
 // do stuff with p
 delete p;
@@ -106,7 +106,7 @@ In addition to **con**structors, C++ also supports **de**structors, which contai
 
 Destructors are written just like constructors, except they're prefixed with a `~`.
 
-```
+```cpp
 class example {
 public:
   point(); // constructor
@@ -124,14 +124,14 @@ example::~example() {
 
 Now when you use the object as normal
 
-```
+```cpp
 example *e = new example;
 printf("Hello!\n");
 delete e;
 ```
 
 The output will be as follows
-```
+```cpp
 Example is created
 Hello!
 Example is removed
@@ -150,7 +150,7 @@ That's right! No interfaces!
 
 What you do instead, is write classes with virtual methods (i.e. abstract classes)
 
-```
+```cpp
 class foo {
 public:
   virtual void override_me();
