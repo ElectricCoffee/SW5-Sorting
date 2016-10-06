@@ -178,3 +178,25 @@ If you write `class bar : protected foo`, all the `public` members in `foo` are 
 And if you write `class bar : private foo`, all `public` and `protected` members become `private` in `bar`.
 
 This essentially lets you control the access level of things in the sub-classes.
+
+## Include Guards
+You probably noticed some weird code in some of the files
+```cpp
+#ifndef foo_hpp
+#define foo_hpp
+// code goes here
+#endif
+```
+This, is an include guard.
+
+Include guards are basically a little piece of hard-coded mechanism for avoiding multiple inclusions of a file.
+
+Thing is, when you include a library in C/C++, often times the file included file is merely pasted into wherever it was included. Yes _pasted_. 
+
+`#` macros are compile-time text-replacement tools, which means they don't know what context means. As such, the include guard works a bit like so:
+
+* If the constant (in this case) `foo_hpp` isn't defined
+* Then Define the constant `foo_hpp` and paste all the code before `#endif`
+* Else _copy nothing_ at all
+
+The fact that it doesn't copy anything essentially means there's no way of having the code being included in the compilation process more than once.
