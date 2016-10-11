@@ -1,6 +1,7 @@
 // The header file of size
 #ifndef size_hpp
 #define size_hpp
+#include "sensor.hpp"
 
 class size : private sensor {
 private:
