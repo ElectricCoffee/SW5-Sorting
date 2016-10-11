@@ -1,5 +1,9 @@
 // The header file of component
 #ifndef component_hpp
 #define component_hpp
-// code goes here
+
+struct component {
+  void detect_brick();
+};
+
 #endif
