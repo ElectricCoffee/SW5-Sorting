@@ -1,8 +1,6 @@
 // The header file of size
 #ifndef size_hpp
 #define size_hpp
-// code goes here
-#endif
 
 class size : private sensor {
 private:
@@ -14,3 +12,5 @@ public:
   unsigned int get_size();
   void check_measuring;
 }
+
+#endif
