@@ -11,6 +11,6 @@ private:
 public:
   unsigned int get_size();
   void check_measuring;
-}
+};
 
 #endif
