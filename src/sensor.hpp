@@ -1,5 +1,10 @@
 // The header file of sensor
 #ifndef sensor_hpp
 #define sensor_hpp
-// code goes here
+#include "component.hpp"
+
+struct sensor : public component {
+  int pin;
+};
+
 #endif
