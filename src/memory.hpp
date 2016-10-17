@@ -15,4 +15,5 @@ class memory {
     memory(short); //constructor takes as input the amount of conveyors to start with
   private:
     std::vector<std::deque<brick>* > _queue;
+    ~memory(); //deconstructor
 #endif
