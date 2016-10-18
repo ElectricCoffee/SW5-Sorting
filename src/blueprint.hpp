@@ -11,6 +11,8 @@ private:
 public:
   blueprint();
   ~blueprint();
+  brick front();
+  void pop_front();
   bool is_brick_useful(brick);
 };
 
