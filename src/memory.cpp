@@ -2,9 +2,9 @@
 #include "memory.hpp"
 
 memory::memory(short amount_conveyors) { //just to give it correct size at start
-  _queue.resize(amount_conveyors);
+  _queue.resize(amount_conveyors); //might as well put the queue to the correct size at the start
   for(int i = 0; i < amount_conveyors; i++) {
-    add_conveyor();
+    add_conveyor(); //initialization
   }
 }
 
@@ -26,15 +26,18 @@ brick memory::dequeue(short a_conveyor_number) {
 }
 
 void memory::add_conveyor() {
-  _queue.push_back(new std::deque<brick>);
+  _queue.push_back(new std::deque<brick>); //is added in the back, should it maybe have a shrink_to_fit() ? if memory poses a problem could work
 }
 
 void memory::remove_conveyor(short a_conveyor_number) { //not saving any of the deleted data, dont run on existing conveyors
   if(_queue.size() >= a_conveyor_number) {
-    _queue.erase(_queue.begin() + a_conveyor_number -1); //begin sets iterator first place
+    delete( _queue[a_conveyor_number] ); //to ensure proper deletion of the pointer, still not sure if i did it properly
   }
 }
 
-void memory::~memory(){
-  _queue.clear();
+void memory::~memory(){ //should delete all pointers inside the array to ensure no memory leaks
+  int temp_size = _queue.size();
+  for(int i = 0; i < temp_size; i++){
+    remove_conveyor(i);
+  }
 }
