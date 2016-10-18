@@ -4,11 +4,13 @@
 
 /* structs in C++ are classes that are public by default
  * a struct was used intentionally here, don't change to class. */
-struct Brick {
+struct brick {
   int color;
-  int sizeX;
-  int sizeY;
-  int sizeZ;
+  int size_x;
+  int size_y;
+  int size_z;
+  brick(int, int, int, int);
+  bool operator ==(const brick &) const;
 };
 
 #endif
