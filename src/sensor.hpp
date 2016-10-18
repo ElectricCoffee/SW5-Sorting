@@ -1,5 +1,9 @@
 // The header file of sensor
 #ifndef sensor_hpp
 #define sensor_hpp
-// code goes here
+class sensor {
+  public:
+    short pin;
+    sensor(short); //for initialising it
+}
 #endif
