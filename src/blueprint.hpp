@@ -2,12 +2,12 @@
 #ifndef blueprint_hpp
 #define blueprint_hpp
 #include <StandardCPlusplus.h>
-#include <vector>
+#include <deque>
 #include "brick.hpp"
 
 class blueprint {
 private:
-  std::vector<brick> _registered_bricks;
+  std::deque<brick> _registered_bricks;
 public:
   blueprint();
   bool is_brick_useful(brick);
