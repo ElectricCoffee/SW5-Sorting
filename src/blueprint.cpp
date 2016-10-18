@@ -7,4 +7,6 @@ blueprint::blueprint() {
 
 bool blueprint::is_brick_useful(brick b) {
   // insert relevant checks here
+blueprint::~blueprint() {
+  // add destruction code here
 }

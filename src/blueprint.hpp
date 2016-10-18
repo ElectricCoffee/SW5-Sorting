@@ -10,6 +10,7 @@ private:
   std::deque<brick> _registered_bricks;
 public:
   blueprint();
+  ~blueprint();
   bool is_brick_useful(brick);
 };
 
