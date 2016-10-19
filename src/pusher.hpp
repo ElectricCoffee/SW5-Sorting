@@ -13,5 +13,5 @@ class pusher {
   private:
     Servo the_servo; //servo object from arduino servo library. creates its own in construction
 
-}
+};
 #endif
