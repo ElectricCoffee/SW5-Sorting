@@ -4,5 +4,5 @@
 struct sensor {
   char pin;
   sensor(char); //for initialising it
-}
+};
 #endif
