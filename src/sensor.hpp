@@ -4,6 +4,6 @@
 class sensor {
   public:
     short pin;
-    sensor(short); //for initialising it
+    sensor(char); //for initialising it
 }
 #endif
