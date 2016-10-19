@@ -3,7 +3,8 @@
 #define sensor_hpp
 #include "component.hpp"
 
-struct sensor : public component {
-  int pin;
+struct sensor {
+  char pin;
+  sensor(char); //for initialising it
 };
 #endif

@@ -60,11 +60,20 @@ void memory::remove_conveyor(short a_conveyor_number) { //not saving any of the 
 }
 
 /**
- * deletes all bricks inside the deque before destroying the object
+ * Deletes the references in the queue before clearing it of objects.
  */
-void memory::~memory(){ 
-  int temp_size = _queue.size();
-  for(int i = 0; i < temp_size; i++){
-    remove_conveyor(i);
+memory::~memory() {
+  std::vector<brick>::iterator vector_iterator;
+
+  // for each element in the vector "_queue"
+  // delete the reference to the item
+  for (vector_iterator  = _queue.begin();
+       vector_iterator != _queue.end();
+       vector_iterator++) {
+    delete *vector_iterator;
   }
+
+  // after the queue's references have been deleted,
+  // clear the queue of elements
+  _queue.clear();
 }

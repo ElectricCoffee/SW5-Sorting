@@ -16,4 +16,5 @@ class memory {
   private:
     std::vector<std::deque<brick>* > _queue;
     ~memory(); //deconstructor
+};
 #endif
