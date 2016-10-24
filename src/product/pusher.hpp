@@ -1,6 +1,10 @@
 // The header file of pusher
 #ifndef pusher_hpp
 #define pusher_hpp
+#include <Arduino.h>
+#include <Servo.h>
+#include "sensor.hpp"
+
 class pusher {
   public:
     sensor photo_sensor; //it needs one, but maybe could be an input var in detect brick instead? just need pin number
