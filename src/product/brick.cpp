@@ -14,3 +14,8 @@ bool brick::operator ==(const brick &that) const {
     &&   size_y == that.size_y
     &&   size_z == that.size_z;
 }
+
+
+brick brick::empty_brick() {
+  return brick(0, 0, 0, 0);
+}
