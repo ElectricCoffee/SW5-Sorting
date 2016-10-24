@@ -1,6 +1,7 @@
 // The header file of size
 #ifndef size_hpp
 #define size_hpp
+#include <Arduino.h>
 #include "sensor.hpp"
 
 class size : private sensor {
