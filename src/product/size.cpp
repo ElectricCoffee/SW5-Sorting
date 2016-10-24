@@ -7,8 +7,8 @@
  * returns the last size it had read
  * doesnt measure a brick, only returns value of the last measured brick
  */
-int size::get_size() {
-  return newest_size; 
+unsigned int size::get_size() {
+  return newest_size;
 }
 
 /**
