@@ -1,6 +1,7 @@
 // The header file of src/motor
 #ifndef motor_hpp
 #define motor_hpp
+#include <Arduino.h>
 #include <AFMotor.h>
 #include "component.hpp"
 
