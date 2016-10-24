@@ -1,6 +1,5 @@
 // The implementation file of src/motor
 #include "motor.hpp"
-<<<<<<< HEAD
 
 /**
  * Constructs the motor object.
@@ -12,7 +11,7 @@ motor::motor(char a_speed, int a_motor_number) {
   _motor_ptr = new AF_DCMotor(a_motor_number);
 }
 
-/** 
+/**
  * Destructor makes sure the motor pointer is deleted.
  * This is done to prevent a potential memory leak.
  */
@@ -27,7 +26,7 @@ motor::~motor() {
  */
 void motor::run_forward(bool ramp_up) {
   _motor_ptr->run(FORWARD);
-  
+
   if (!ramp_up) {
     _motor_ptr->setSpeed(_speed);
   } else {
@@ -46,7 +45,7 @@ void motor::run_forward(bool ramp_up) {
  */
 void motor::run_backward(bool ramp_up) {
     _motor_ptr->run(BACKWARD);
-  
+
   if (!ramp_up) {
     _motor_ptr->setSpeed(_speed);
   } else {
@@ -69,6 +68,6 @@ void motor::stop(bool ramp_down) {
       delay(RAMP_UP_TIME);
     }
   }
-  
+
   _motor_ptr->run(RELEASE);
 }
