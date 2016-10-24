@@ -6,13 +6,13 @@
 
 class size : private sensor {
 private:
-  void start_measuring;	
-  void stop_measuring;
+  void start_measuring();
+  void stop_measuring();
   unsigned long current_time;
   unsigned int newest_size;
 public:
   unsigned int get_size();
-  void check_measuring;
+  void check_measuring();
 };
 
 #endif
