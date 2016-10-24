@@ -5,8 +5,8 @@
  * sets the queue at the proper starting size and creates the correct amount of conveyors
  * @param amount_conveyors how many conveyors that needs to be added
  */
-memory::memory(short amount_conveyors) { 
-  _queue.resize(amount_conveyors); 
+memory::memory(short amount_conveyors) {
+  _queue.resize(amount_conveyors);
   for(int i = 0; i < amount_conveyors; i++) {
     add_conveyor(); //initialization
   }
@@ -44,7 +44,7 @@ brick memory::dequeue(short a_conveyor_number) {
  * creates a new conveyor, nothing to see here move along
  */
 void memory::add_conveyor() {
-  _queue.push_back(new std::deque<brick>); 
+  _queue.push_back(new std::deque<brick>);
 }
 
 /**
