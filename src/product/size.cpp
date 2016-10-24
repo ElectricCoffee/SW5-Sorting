@@ -18,14 +18,14 @@ unsigned int size::get_size() {
  */
 void size::start_measuring() {
   current_time = millis();
-  newest_size = null; 
+  newest_size = 0;
 }
 
 /**
  * stops the measuring and calculates the speed
  */
 void size::stop_measuring() {
-  newest_size = ENGINESPEED * ( millis() - current_time);  
+  newest_size = ENGINESPEED * (millis() - current_time);
 }
 
 /**
@@ -33,13 +33,13 @@ void size::stop_measuring() {
  * i think this is what should be done in loop, maybe this is where there should be a signal
  */
 void size::check_measuring() {
-  if(newest_size != null) { //this is when there isn't one being measured. 
-    if(digitalRead(pin) == true) {
+  if (newest_size != 0) { //this is when there isn't one being measured.
+    if (digitalRead(pin)) {
       start_measuring();
     }
-  } 
+  }
   else { //this is for when there currently is one being measured.
-    if(digitalRead(pin) == false) {
+    if (!digitalRead(pin)) {
       stop_measuring();
     }
   }
