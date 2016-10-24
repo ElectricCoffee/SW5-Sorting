@@ -63,7 +63,7 @@ void memory::remove_conveyor(short a_conveyor_number) { //not saving any of the 
  * Deletes the references in the queue before clearing it of objects.
  */
 memory::~memory() {
-  std::vector<brick>::iterator vector_iterator;
+  std::vector<std::deque<brick>* >::iterator vector_iterator;
 
   // for each element in the vector "_queue"
   // delete the reference to the item
