@@ -8,7 +8,7 @@
 pusher::pusher(uint8_t temp_photo_pin, uint8_t temp_servo_pin){
   photo_sensor = new sensor(temp_photo_pin);
   servo_sensor = new sensor(temp_servo_pin);
-  the_servo.attach(servo_sensor.pin);
+  the_servo.attach(servo_sensor->pin);
 }
 pusher::open(){
   if(the_servo == null)

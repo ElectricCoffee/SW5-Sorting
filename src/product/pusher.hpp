@@ -7,8 +7,8 @@
 
 class pusher {
   public:
-    sensor photo_sensor; //it needs one, but maybe could be an input var in detect brick instead? just need pin number
-    sensor servo_sensor; //or maybe just be some ints instead? might just be objects for objects sake. or maybe inherit
+    sensor *photo_sensor; //it needs one, but maybe could be an input var in detect brick instead? just need pin number
+    sensor *servo_sensor; //or maybe just be some ints instead? might just be objects for objects sake. or maybe inherit
     void open();
     void close();
     bool detect_brick(); //returns to ensure the controllers knows a new brick appeared
@@ -16,6 +16,5 @@ class pusher {
 
   private:
     Servo the_servo; //servo object from arduino servo library. creates its own in construction
-
 };
 #endif
