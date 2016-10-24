@@ -12,7 +12,7 @@ class pusher {
     void open();
     void close();
     bool detect_brick(); //returns to ensure the controllers knows a new brick appeared
-    pusher(int, int); //constructor which takes the pins as input, first one photo
+    pusher(uint8_t, uint8_t); //constructor which takes the pins as input, first one photo
 
   private:
     Servo the_servo; //servo object from arduino servo library. creates its own in construction
