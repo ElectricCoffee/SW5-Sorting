@@ -3,6 +3,6 @@
 /**
  * initialises the pin value, just there to make it easier
  */
-sensor::sensor(char a_pin){
+sensor::sensor(uint8_t a_pin) {
   pin = a_pin;
 }
