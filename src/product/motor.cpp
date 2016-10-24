@@ -6,7 +6,7 @@
  * @param a_speed sets the speed of the motor, can be any value between 0 and 255.
  * @param a_motor_number sets the motor's pin number, can be the values 1 to 4.
  */
-motor::motor(char a_speed, int a_motor_number) {
+motor::motor(uint8_t a_speed, uint8_t a_motor_number) {
   _speed = a_speed;
   _motor_ptr = new AF_DCMotor(a_motor_number);
 }

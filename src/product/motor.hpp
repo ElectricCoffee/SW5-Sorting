@@ -1,6 +1,7 @@
 // The header file of src/motor
 #ifndef motor_hpp
 #define motor_hpp
+#include <Arduino.h>
 #include <AFMotor.h>
 #include "component.hpp"
 
@@ -13,10 +14,9 @@
 class motor : public component {
 private:
   AF_DCMotor *_motor_ptr;
-  char _speed = 0;
+  uint8_t _speed = 0;
 public:
-  // char here used as an 8-bit integer
-  motor(char, int);
+  motor(uint8_t, uint8_t);
   ~motor();
   void run_forward(bool ramp_up = false);
   void run_backward(bool ramp_up = false);

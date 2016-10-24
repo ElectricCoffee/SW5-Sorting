@@ -5,23 +5,26 @@
 #define OPEN_STATE 0 //put here for easier editing
 #define CLOSE_STATE 90
 
-pusher::pusher(int temp_photo_pin, int temp_servo_pin){
+pusher::pusher(uint8_t temp_photo_pin, uint8_t temp_servo_pin){
   photo_sensor = new sensor(temp_photo_pin);
   servo_sensor = new sensor(temp_servo_pin);
-  the_servo.attach(servo_sensor.pin);
-}
-pusher::open(){
-  if(the_servo == null)
-    the_servo.attach(servo_sensor.pin);
-  the_servo.write(OPEN_STATE); 
+  the_servo.attach(servo_sensor->pin);
 }
 
-pusher::close(){
-  if(the_servo == null)
-    the_servo.attach(servo_sensor.pin);
+void pusher::open() {
+  //if (the_servo == NULL) {
+    //the_servo.attach(servo_sensor->pin);
+  //}
+  the_servo.write(OPEN_STATE);
+}
+
+void pusher::close() {
+  //if (the_servo == NULL) {
+    //the_servo.attach(servo_sensor->pin);
+  //}
   the_servo.write(CLOSE_STATE);
 }
 
-pusher::detect_brick(){
-  return digitalRead(photo_sensor); 
+int pusher::detect_brick() {
+  return digitalRead(photo_sensor->pin);
 }

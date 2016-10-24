@@ -5,8 +5,8 @@
  * sets the queue at the proper starting size and creates the correct amount of conveyors
  * @param amount_conveyors how many conveyors that needs to be added
  */
-memory::memory(short amount_conveyors) { 
-  _queue.resize(amount_conveyors); 
+memory::memory(short amount_conveyors) {
+  _queue.resize(amount_conveyors);
   for(int i = 0; i < amount_conveyors; i++) {
     add_conveyor(); //initialization
   }
@@ -19,7 +19,7 @@ memory::memory(short amount_conveyors) {
  * @param a_conveyor_number which conveyor it gets put on
  */
 void memory::enqueue(brick a_brick, short a_conveyor_number) {
-  if(_queue.size() >= a_conveyor_number) { //to ensure proper access
+  if(_queue.size() >= (size_t) a_conveyor_number) { //to ensure proper access
     _queue[a_conveyor_number]->push_back(a_brick);
   }
 }
@@ -30,13 +30,12 @@ void memory::enqueue(brick a_brick, short a_conveyor_number) {
  * @param a_conveyor_number which conveyor to take on from
  */
 brick memory::dequeue(short a_conveyor_number) {
-  if(_queue.size() >= amount_conveyors) {
-    brick temp_brick = (*_queue[a_conveyor_number])[0]; 
+  if (_queue.size() >= (size_t) a_conveyor_number) {
+    brick temp_brick = (*_queue[a_conveyor_number])[0];
     _queue[a_conveyor_number]->erase( _queue[a_conveyor_number]->begin() ); //deletes the first pos and should resize it
     return temp_brick;
-  } 
-  else {
-    return null;
+  } else {
+    return brick::empty_brick();
   }
 }
 
@@ -44,7 +43,7 @@ brick memory::dequeue(short a_conveyor_number) {
  * creates a new conveyor, nothing to see here move along
  */
 void memory::add_conveyor() {
-  _queue.push_back(new std::deque<brick>); 
+  _queue.push_back(new std::deque<brick>);
 }
 
 /**
@@ -53,7 +52,7 @@ void memory::add_conveyor() {
  * \todo this probably needs testing to see if both delete and erase works this way
  */
 void memory::remove_conveyor(short a_conveyor_number) { //not saving any of the deleted data, dont run on existing conveyors
-  if(_queue.size() >= a_conveyor_number) {
+  if(_queue.size() >= (size_t) a_conveyor_number) {
     delete( _queue[a_conveyor_number] ); //this should delete what the pointers point at
     _queue.erase( _queue.begin() + a_conveyor_number ); //this deletes the pointer and resizes the vector
   }
@@ -63,7 +62,7 @@ void memory::remove_conveyor(short a_conveyor_number) { //not saving any of the 
  * Deletes the references in the queue before clearing it of objects.
  */
 memory::~memory() {
-  std::vector<brick>::iterator vector_iterator;
+  std::vector<std::deque<brick>* >::iterator vector_iterator;
 
   // for each element in the vector "_queue"
   // delete the reference to the item

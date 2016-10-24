@@ -11,6 +11,7 @@ struct brick {
   int size_z;
   brick(int, int, int, int);
   bool operator ==(const brick &) const;
+  static brick empty_brick();
 };
 
 #endif

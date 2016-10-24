@@ -1,10 +1,11 @@
 // The header file of sensor
 #ifndef sensor_hpp
 #define sensor_hpp
+#include <Arduino.h>
 #include "component.hpp"
 
-struct sensor {
-  char pin;
-  sensor(char); //for initialising it
+struct sensor : public component {
+  uint8_t pin;
+  sensor(uint8_t); //for initialising it
 };
 #endif
