@@ -3,3 +3,6 @@
 .gcc-flags.json
 .DS_Store
 .piolibdeps
+*.hash
+.gcc-flags.json
+.clang_complete
