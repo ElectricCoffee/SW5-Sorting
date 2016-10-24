@@ -11,7 +11,7 @@ class pusher {
     sensor *servo_sensor; //or maybe just be some ints instead? might just be objects for objects sake. or maybe inherit
     void open();
     void close();
-    bool detect_brick(); //returns to ensure the controllers knows a new brick appeared
+    int detect_brick(); //returns to ensure the controllers knows a new brick appeared
     pusher(uint8_t, uint8_t); //constructor which takes the pins as input, first one photo
 
   private:

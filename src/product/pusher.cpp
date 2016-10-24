@@ -22,6 +22,6 @@ pusher::close(){
   the_servo.write(CLOSE_STATE);
 }
 
-pusher::detect_brick(){
-  return digitalRead(photo_sensor); 
+int pusher::detect_brick() {
+  return digitalRead(photo_sensor->pin);
 }
