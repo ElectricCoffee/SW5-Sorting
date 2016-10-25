@@ -1,7 +1,7 @@
 // The header file of blueprint
 #ifndef blueprint_hpp
 #define blueprint_hpp
-#include <StandardCPlusplus.h>
+#include <StandardCplusplus.h>
 #include <deque>
 #include "brick.hpp"
 
