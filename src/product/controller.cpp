@@ -19,10 +19,8 @@ void controller::register_component(component comp) {
   bool component_exists = false;
 
   for (it  = _registered_components.begin(); it != _registered_components.end(); it++) {
-    if (typeid(*it).hash_code() != typeid(comp).hash_code()) {
-      continue; // if the types don't match, check the next component
-    } else if (*it == comp) {
-      coponent_exists = true;
+    if (*it == comp) {
+      component_exists = true;
     }
   }
 
