@@ -4,6 +4,8 @@
 
 struct component {
   void detect_brick();
+
+  virtual bool operator==(const component) const;
 };
 
 #endif

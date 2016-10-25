@@ -28,3 +28,8 @@ void pusher::close() {
 int pusher::detect_brick() {
   return digitalRead(photo_sensor->pin);
 }
+
+bool pusher::operator==(const pusher p) const {
+  return photo_sensor == p.photo_sensor
+    &&   servo_sensor == p.servo_sensor;
+}

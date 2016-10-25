@@ -71,3 +71,8 @@ void motor::stop(bool ramp_down) {
 
   _motor_ptr->run(RELEASE);
 }
+
+bool motor::operator==(const motor m) const {
+  return _motor_ptr == m._motor_ptr
+    &&   _speed     == m._speed;
+}

@@ -7,5 +7,7 @@
 struct sensor : public component {
   uint8_t pin;
   sensor(uint8_t); //for initialising it
+
+  virtual bool operator==(const sensor) const;
 };
 #endif

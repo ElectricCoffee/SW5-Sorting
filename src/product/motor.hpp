@@ -21,6 +21,8 @@ public:
   void run_forward(bool ramp_up = false);
   void run_backward(bool ramp_up = false);
   void stop(bool ramp_down = false);
+
+  bool operator==(const motor) const;
 };
 
 #endif
