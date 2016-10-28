@@ -5,3 +5,5 @@
 .piolibdeps
 *.hash
 *.gch
+doc/
+*~
