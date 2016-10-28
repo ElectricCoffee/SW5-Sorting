@@ -3,7 +3,7 @@
 #define component_hpp
 
 struct component {
-  void detect_brick();
+  virtual int detect_brick();
 
   virtual bool operator==(const component) const;
 };
