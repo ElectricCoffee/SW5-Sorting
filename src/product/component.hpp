@@ -8,7 +8,7 @@ struct component {
   component(uint8_t);
   virtual bool detect_brick();
 
-  virtual bool operator==(const component) const;
+  /*virtual*/ bool operator==(const component) const;
 };
 
 #endif
