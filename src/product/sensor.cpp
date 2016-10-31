@@ -5,6 +5,8 @@
  */
 sensor::sensor(uint8_t a_pin) : component(a_pin) { }
 
+/*
 bool sensor::operator==(const sensor s) const {
   return pin == s.pin;
 }
+*/

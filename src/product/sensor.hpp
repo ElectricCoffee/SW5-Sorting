@@ -7,6 +7,6 @@
 struct sensor : public component {
   sensor(uint8_t); //for initialising it
 
-  virtual bool operator==(const sensor) const;
+  //bool operator==(const sensor) const override;
 };
 #endif
