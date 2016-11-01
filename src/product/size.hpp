@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include "sensor.hpp"
 
-class size : private sensor {
+class size : public sensor {
 private:
   void start_measuring();
   void stop_measuring();
