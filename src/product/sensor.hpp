@@ -7,5 +7,9 @@
 struct sensor : public component {
   uint8_t pin;
   sensor(uint8_t); //for initialising it
+  virtual void check_measuring();
+protected:
+  virtual void start_measuring();
+  virtual void stop_measuring();
 };
 #endif
