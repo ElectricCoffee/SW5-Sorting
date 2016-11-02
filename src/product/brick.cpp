@@ -15,7 +15,13 @@ bool brick::operator ==(const brick &that) const {
     &&   size_z == that.size_z;
 }
 
+bool brick::operator !=(const brick &that) const {
+  return !(*this == that);
+}
 
+/**
+ * @return An instance of a brick with all fields set to 0
+ */
 brick brick::empty_brick() {
   return brick(0, 0, 0, 0);
 }
