@@ -9,7 +9,7 @@ bool component::detect_brick() {
   return digitalRead(pin) == HIGH;
 }
 
-bool component::operator ==(const component comp) const {
+bool component::operator ==(const component &comp) const {
   // if they share the same pin, they're probably the same component
   return pin == comp.pin;
 }
