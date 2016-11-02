@@ -9,6 +9,7 @@ struct component {
   virtual bool detect_brick();
 
   bool operator ==(const component&) const;
+  bool operator !=(const component&) const;
 };
 
 #endif
