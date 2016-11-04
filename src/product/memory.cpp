@@ -31,8 +31,8 @@ void memory::enqueue(brick a_brick, uint8_t a_conveyor_number) {
  */
 brick memory::dequeue(uint8_t a_conveyor_number) {
   if (_queue.size() >= (size_t) a_conveyor_number) {
-    brick temp_brick = (*_queue[a_conveyor_number])[0];
-    _queue[a_conveyor_number]->erase(_queue[a_conveyor_number]->begin()); //deletes the first pos and should resize it
+    brick temp_brick = _queue[a_conveyor_number]->front();
+    _queue[a_conveyor_number]->pop_front(); //deletes the first pos and should resize it
     return temp_brick;
   } else {
     return brick::empty_brick();
