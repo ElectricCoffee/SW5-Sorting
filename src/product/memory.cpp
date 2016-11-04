@@ -19,7 +19,7 @@ memory::memory(uint8_t amount_conveyors) {
  * @param a_conveyor_number which conveyor it gets put on
  */
 void memory::enqueue(brick a_brick, uint8_t a_conveyor_number) {
-  if (_queue.size() >= (size_t) a_conveyor_number) { //to ensure proper access
+  if (_queue.size() > (size_t) a_conveyor_number) { //to ensure proper access
     _queue[a_conveyor_number]->push_back(a_brick);
   }
 }
@@ -30,7 +30,7 @@ void memory::enqueue(brick a_brick, uint8_t a_conveyor_number) {
  * @param a_conveyor_number which conveyor to take on from
  */
 brick memory::dequeue(uint8_t a_conveyor_number) {
-  if (_queue.size() >= (size_t) a_conveyor_number) {
+  if (_queue.size() > (size_t) a_conveyor_number) {
     brick temp_brick = _queue[a_conveyor_number]->front();
     _queue[a_conveyor_number]->pop_front(); //deletes the first pos and should resize it
     return temp_brick;
