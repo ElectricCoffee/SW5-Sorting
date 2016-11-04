@@ -16,23 +16,23 @@ memory::memory(uint8_t amount_conveyors) {
  * puts a brick onto the queue into the back
  * fails if the conveyor doesn't exist
  * @param a_brick the brick to be added
- * @param a_conveyor_number which conveyor it gets put on
+ * @param conveyor which conveyor it gets put on
  */
-void memory::enqueue(brick a_brick, uint8_t a_conveyor_number) {
-  if (_queue.size() > (size_t) a_conveyor_number) { //to ensure proper access
-    _queue[a_conveyor_number]->push_back(a_brick);
+void memory::enqueue(brick a_brick, uint8_t conveyor) {
+  if (_queue.size() > (size_t) conveyor) { //to ensure proper access
+    _queue[conveyor]->push_back(a_brick);
   }
 }
 
 /**
  * removes the first brick on the chosen conveyor
  * shrinks the queue to use less memory
- * @param a_conveyor_number which conveyor to take on from
+ * @param conveyor which conveyor to take on from
  */
-brick memory::dequeue(uint8_t a_conveyor_number) {
-  if (_queue.size() > (size_t) a_conveyor_number) {
-    brick temp_brick = _queue[a_conveyor_number]->front();
-    _queue[a_conveyor_number]->pop_front(); //deletes the first pos and should resize it
+brick memory::dequeue(uint8_t conveyor) {
+  if (_queue.size() > (size_t) conveyor) {
+    brick temp_brick = _queue[conveyor]->front();
+    _queue[conveyor]->pop_front(); //deletes the first pos and should resize it
     return temp_brick;
   } else {
     return brick::empty_brick();
@@ -48,13 +48,13 @@ void memory::add_conveyor() {
 
 /**
  * deletes a conveyor
- * @param a_conveyor_number which conveyor to remove
+ * @param conveyor which conveyor to remove
  * \todo this probably needs testing to see if both delete and erase works this way
  */
-void memory::remove_conveyor(uint8_t a_conveyor_number) { //not saving any of the deleted data, dont run on existing conveyors
-  if(_queue.size() >= (size_t) a_conveyor_number) {
-    delete( _queue[a_conveyor_number] ); //this should delete what the pointers point at
-    _queue.erase( _queue.begin() + a_conveyor_number ); //this deletes the pointer and resizes the vector
+void memory::remove_conveyor(uint8_t conveyor) { //not saving any of the deleted data, dont run on existing conveyors
+  if(_queue.size() >= (size_t) conveyor) {
+    delete( _queue[conveyor] ); //this should delete what the pointers point at
+    _queue.erase( _queue.begin() + conveyor ); //this deletes the pointer and resizes the vector
   }
 }
 
