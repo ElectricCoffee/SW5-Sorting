@@ -13,8 +13,10 @@ status status::success() {
 
 /**
  * Returns a failure status
+ * @param location The method in which the error occurred.
  * @param err_msg The message associated with the error
  */
-status status::failure(String err_msg) {
-  return status(false, err_msg);
+status status::failure(String location, String err_msg) {
+  String msg = ">> ERROR In " + location + ": " + err_msg;
+  return status(false, msg);
 }

@@ -14,7 +14,7 @@ struct status {
   const String error_message;
 
   static status success();
-  static status failure(String);
+  static status failure(String, String);
 private:
   status(bool, String);
 };
