@@ -6,16 +6,17 @@
 #include <vector>
 #include <deque>
 #include "brick.hpp"
+#include "util/status.hpp"
 
 class memory {
 private:
   std::vector<std::deque<brick>*> _queue;
   ~memory();
 public:
-  void enqueue(brick, uint8_t);
+  status enqueue(brick, uint8_t);
   brick dequeue(uint8_t);
   void add_conveyor();
-  void remove_conveyor(uint8_t);
+  status remove_conveyor(uint8_t);
   memory(uint8_t);
 };
 #endif

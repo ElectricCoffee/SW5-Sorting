@@ -17,11 +17,14 @@ memory::memory(uint8_t amount_conveyors) {
  * fails if the conveyor doesn't exist
  * @param a_brick the brick to be added
  * @param conveyor which conveyor it gets put on
+ * @returns a success if the input isn't out of bounds, and a failure if it is.
  */
-void memory::enqueue(brick a_brick, uint8_t conveyor) {
+status memory::enqueue(brick a_brick, uint8_t conveyor) {
   if (_queue.size() > (size_t) conveyor) { //to ensure proper access
     _queue[conveyor]->push_back(a_brick);
+    return status::success();
   }
+  return status::failure("memory::enqueue", "Supplied number exceeds queue size");
 }
 
 /**
@@ -50,12 +53,15 @@ void memory::add_conveyor() {
  * deletes a conveyor
  * @param conveyor which conveyor to remove
  * \todo this probably needs testing to see if both delete and erase works this way
+ * @returns a success if the input isn't out of bounds, and a failure if it is.
  */
-void memory::remove_conveyor(uint8_t conveyor) { //not saving any of the deleted data, dont run on existing conveyors
+status memory::remove_conveyor(uint8_t conveyor) {
   if(_queue.size() >= (size_t) conveyor) {
-    delete( _queue[conveyor] ); //this should delete what the pointers point at
-    _queue.erase( _queue.begin() + conveyor ); //this deletes the pointer and resizes the vector
+    delete _queue[conveyor]; //this should delete what the pointers point at
+    _queue.erase(_queue.begin() + conveyor); //this deletes the pointer and resizes the vector
+    return status::success();
   }
+  return status::failure("memory::remove_conveyor", "Supplied number exceeds queue size");
 }
 
 /**
@@ -63,7 +69,6 @@ void memory::remove_conveyor(uint8_t conveyor) { //not saving any of the deleted
  */
 memory::~memory() {
   std::vector<std::deque<brick>* >::iterator vector_iterator;
-
   // for each element in the vector "_queue"
   // delete the reference to the item
   for (vector_iterator  = _queue.begin();
@@ -71,7 +76,6 @@ memory::~memory() {
        vector_iterator++) {
     delete *vector_iterator;
   }
-
   // after the queue's references have been deleted,
   // clear the queue of elements
   _queue.clear();
