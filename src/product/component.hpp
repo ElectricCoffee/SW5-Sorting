@@ -6,7 +6,6 @@
 struct component {
   uint8_t pin;
   component(uint8_t);
-  virtual bool detect_brick();
 
   bool operator ==(const component&) const;
   bool operator !=(const component&) const;
