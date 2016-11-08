@@ -33,3 +33,26 @@ void controller::register_component(component comp) {
     _components.push_back(comp);
   }
 }
+
+/**
+ * Registers a sensor if it doesn't already exist in the system.
+ * If it does exist, nothing happens.
+ * @param sen The sensor to be registered.
+ */
+void controller::register_sensor(sensor sen) {
+  std::vector<sensor>::iterator it;
+  bool sensor_exists = false;
+
+  for (it = _sensors.begin(); it != _sensors.end(); it++) {
+    if (*it == sen) {
+      sensor_exists = true;
+      break;
+    }
+  }
+
+  if (!sensor_exists) {
+    _sensors.push_back(sen);
+    _sensor_buffers.push_back(std::deque<brick>());
+  }
+}
+
