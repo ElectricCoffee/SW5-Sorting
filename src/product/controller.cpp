@@ -1,6 +1,8 @@
 // The implementation file of controller
 #include "controller.hpp"
 
+using namespace std;
+
 // empty for now
 controller::controller() {}
 controller::~controller() {}
@@ -19,7 +21,7 @@ void controller::register_brick(brick brk) {
  * @param comp the component to be added to the set.
  */
 void controller::register_component(component comp) {
-  std::vector<component>::iterator it;
+  vector<component>::iterator it;
   bool component_exists = false;
 
   for (it  = _components.begin(); it != _components.end(); it++) {
@@ -40,7 +42,7 @@ void controller::register_component(component comp) {
  * @param sen The sensor to be registered.
  */
 void controller::register_sensor(sensor sen) {
-  std::vector<sensor>::iterator it;
+  vector<sensor>::iterator it;
   bool sensor_exists = false;
 
   for (it = _sensors.begin(); it != _sensors.end(); it++) {
