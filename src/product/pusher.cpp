@@ -8,21 +8,15 @@
 pusher::pusher(uint8_t temp_photo_pin, uint8_t temp_servo_pin) : component(temp_servo_pin) {
   photo_sensor = new sensor(temp_photo_pin);
   servo_sensor = new sensor(temp_servo_pin);
-  the_servo.attach(servo_sensor->pin);
+  _servo.attach(servo_sensor->pin);
 }
 
 void pusher::open() {
-  //if (the_servo == NULL) {
-    //the_servo.attach(servo_sensor->pin);
-  //}
-  the_servo.write(OPEN_STATE);
+  _servo.write(OPEN_STATE);
 }
 
 void pusher::close() {
-  //if (the_servo == NULL) {
-    //the_servo.attach(servo_sensor->pin);
-  //}
-  the_servo.write(CLOSE_STATE);
+  _servo.write(CLOSE_STATE);
 }
 
 bool pusher::detect_brick() {

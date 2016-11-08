@@ -15,6 +15,6 @@ class pusher : public component {
     pusher(uint8_t, uint8_t); //constructor which takes the pins as input, first one photo
     bool operator==(const pusher) const;
   private:
-    Servo the_servo; //servo object from arduino servo library. creates its own in construction
+    Servo _servo; //servo object from arduino servo library. creates its own in construction
 };
 #endif
