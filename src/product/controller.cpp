@@ -25,6 +25,7 @@ void controller::register_component(component comp) {
   for (it  = _components.begin(); it != _components.end(); it++) {
     if (*it == comp) {
       component_exists = true;
+      break;
     }
   }
 
