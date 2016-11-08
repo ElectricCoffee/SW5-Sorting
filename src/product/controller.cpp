@@ -1,6 +1,7 @@
 // The implementation file of controller
 #include "controller.hpp"
 
+// empty for now
 controller::controller() {}
 controller::~controller() {}
 
@@ -9,7 +10,7 @@ controller::~controller() {}
  * @param brk the brick to be added
  */
 void controller::register_brick(brick brk) {
-  _registered_bricks.push_back(brk);
+  _bricks.push_back(brk);
 }
 
 /**
@@ -21,13 +22,13 @@ void controller::register_component(component comp) {
   std::vector<component>::iterator it;
   bool component_exists = false;
 
-  for (it  = _registered_components.begin(); it != _registered_components.end(); it++) {
+  for (it  = _components.begin(); it != _components.end(); it++) {
     if (*it == comp) {
       component_exists = true;
     }
   }
 
   if (!component_exists) {
-    _registered_components.push_back(comp);
+    _components.push_back(comp);
   }
 }

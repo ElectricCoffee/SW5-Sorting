@@ -13,10 +13,10 @@
 
 class controller {
 private:
-  std::list<brick> _registered_bricks;
+  std::list<brick> _bricks;
   std::vector<std::deque<brick> > _sensor_buffers;
-  std::vector<component> _registered_components;
-  std::vector<sensor> _registered_sensors;
+  std::vector<component> _components;
+  std::vector<sensor> _sensors;
 public:
   controller();
   ~controller();
