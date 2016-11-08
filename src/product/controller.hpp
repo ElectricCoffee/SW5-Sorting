@@ -22,6 +22,7 @@ public:
   ~controller();
   void register_brick(brick);
   void register_component(component);
+  void register_sensor(sensor);
 };
 
 #endif
