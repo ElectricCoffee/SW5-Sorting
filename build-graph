@@ -1,0 +1,17 @@
+#!/bin/bash
+
+NAME="class-diagram"
+FILENAME="$NAME.dot"
+OUTPUT="$NAME.png"
+
+if [ ! -f $FILENAME ]
+then
+   echo 'The file "$FILENAME" does not exist!'
+else
+    dot -Tpng $FILENAME -o $OUTPUT
+    echo $FILENAME written to $OUTPUT.
+fi
+
+unset NAME
+unset FILENAME
+unset OUTPUT
