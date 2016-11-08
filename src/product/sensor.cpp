@@ -5,6 +5,11 @@
  */
 sensor::sensor(uint8_t a_pin) : component(a_pin) { }
 
+brick sensor::get_brick_data() {
+  // Please override this method.
+  return brick::empty_brick();
+}
+
 /*
 bool sensor::operator==(const sensor s) const {
   return pin == s.pin;
