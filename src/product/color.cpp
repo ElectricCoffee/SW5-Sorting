@@ -1,12 +1,22 @@
 // The implementation file of color
 #include "color.hpp"
 
-int color::get_color() {
-  return 57005; // temporary return value 0xDEAD
+unsigned int color::get_color() {
+  return color::start_measuring(); // temporary return value 0xDEAD
 }
 
-void color::start_measuring() {
-  newest_color = analogRead(pin); // Reads input from color sensor pin needs work tho
+unsigned int color::start_measuring() {
+  SFE_ISL29125 RGB_sensor; //declaring the sensor as an object
+  unsigned int red = RGB_sensor.readRed(); //reads red value
+  unsigned int green = RGB_sensor.readGreen(); //reads green value
+  unsigned int blue = RGB_sensor.readBlue(); //reads blue value
+
+  newest_color = 0; // ensures reset newest color everytime
+  newest_color <<= red; //bitwise shift red.
+  newest_color <<= green;
+  newest_color <<= blue;
+
+  return newest_color;
 }
 
 void color::stop_measuring() {
