@@ -41,7 +41,7 @@ void controller::register_component(component comp) {
  * If it does exist, nothing happens.
  * @param sen The sensor to be registered.
  */
-void controller::register_sensor(sensor sen) {
+void controller::register_sensor(sensor &sen) {
   vector<sensor>::iterator it;
   bool sensor_exists = false;
 
