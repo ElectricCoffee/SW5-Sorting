@@ -18,7 +18,8 @@ private:
   AF_DCMotor *_motor_ptr;
   uint8_t _speed = 0;
 public:
-  motor(uint8_t, uint8_t);
+  uint8_t read_pin;
+  motor(uint8_t, uint8_t, uint8_t);
   ~motor();
   void run_forward(bool ramp_up = false);
   void run_backward(bool ramp_up = false);
