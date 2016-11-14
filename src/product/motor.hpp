@@ -5,6 +5,8 @@
 #include <AFMotor.h>
 #include "component.hpp"
 
+#define MIN_SPEED 1
+#define MAX_SPEED 255
 #define RAMP_UP_TIME 10
 #define M1 1
 #define M2 2
