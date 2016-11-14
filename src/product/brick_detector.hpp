@@ -14,8 +14,9 @@
  * work great in practice.
  */
 
-struct brick_detecor {
-  virtual bool detect_brick();
+struct brick_detector {
+  virtual bool detect_brick() = 0;
+  virtual ~brick_detector()   = 0;
 };
 
 #endif
