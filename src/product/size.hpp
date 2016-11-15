@@ -3,8 +3,9 @@
 #define size_hpp
 #include <Arduino.h>
 #include "sensor.hpp"
+#include "component.hpp"
 
-class size : public sensor {
+class size : public sensor, public component {
 private:
   void start_measuring();
   void stop_measuring();

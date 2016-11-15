@@ -11,7 +11,7 @@
 #define RESET_VALUE 0
 #define COLOR_THRESHOLD 0x060907
 
-class color : public sensor {
+class color : public sensor, public component {
 private:
   // variables
   unsigned int _newest_color;
