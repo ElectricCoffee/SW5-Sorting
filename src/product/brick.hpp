@@ -5,11 +5,11 @@
 /* structs in C++ are classes that are public by default
  * a struct was used intentionally here, don't change to class. */
 struct brick {
-  int color;
-  int size_x;
-  int size_y;
-  int size_z;
-  brick(int, int, int, int);
+  unsigned int color;
+  unsigned int size_x;
+  unsigned int size_y;
+  unsigned int size_z;
+  brick(unsigned int c, unsigned int x, unsigned int y, unsigned int z);
   brick combine_with(const brick&) const;
   bool operator ==(const brick &) const;
   bool operator !=(const brick &) const;

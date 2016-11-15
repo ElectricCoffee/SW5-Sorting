@@ -1,7 +1,7 @@
 // The implementation file of brick
 #include "brick.hpp"
 
-brick::brick(int col, int x, int y, int z) {
+brick::brick(unsigned int col, unsigned int x, unsigned int y, unsigned int z) {
   color  = col;
   size_x = x;
   size_y = y;
