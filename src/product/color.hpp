@@ -3,7 +3,7 @@
 #define color_hpp
 #include <Arduino.h>
 #include "sensor.hpp"
-#include "SparkFunISL29125.h"
+#include <src/SparkFunISL29125.h>
 #include <Wire.h>
 
 class color : public sensor {
