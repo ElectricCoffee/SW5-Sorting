@@ -8,7 +8,7 @@
  * doesnt measure a brick, only returns value of the last measured brick
  */
 unsigned int size::get_size() {
-  return newest_size;
+  return _newest_size;
 }
 
 /**
@@ -17,15 +17,15 @@ unsigned int size::get_size() {
  * this will fuckup if it runs for 50 days
  */
 void size::start_measuring() {
-  current_time = millis();
-  newest_size = 0;
+  _current_time = millis();
+  _newest_size = 0;
 }
 
 /**
  * stops the measuring and calculates the speed
  */
 void size::stop_measuring() {
-  newest_size = ENGINESPEED * (millis() - current_time);
+  _newest_size = ENGINESPEED * (millis() - _current_time);
 }
 
 /**
@@ -33,7 +33,7 @@ void size::stop_measuring() {
  * i think this is what should be done in loop, maybe this is where there should be a signal
  */
 void size::check_measuring() {
-  if (newest_size != 0) { //this is when there isn't one being measured.
+  if (_newest_size != 0) { //this is when there isn't one being measured.
     if (digitalRead(pin)) {
       start_measuring();
     }
