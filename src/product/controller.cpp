@@ -45,12 +45,14 @@ void controller::register_sensor(sensor &sen) {
   vector<sensor>::iterator it;
   bool sensor_exists = false;
 
+  /*
   for (it = _sensors.begin(); it != _sensors.end(); it++) {
     if (*it == sen) {
       sensor_exists = true;
       break;
     }
   }
+  */
 
   if (!sensor_exists) {
     ++_number_of_sensors;
