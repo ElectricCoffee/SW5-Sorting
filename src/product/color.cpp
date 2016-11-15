@@ -58,3 +58,7 @@ brick color::get_brick_data() {
     return brick(tsvet, 0, 0, 0);
   }
 }
+
+bool color::detect_brick() {
+  return digitalRead(pin) == HIGH;
+}
