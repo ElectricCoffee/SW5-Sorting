@@ -1,10 +1,16 @@
 // The implementation of file motor_pusher
 #include "motor_pusher.hpp"
 
-motor_pusher::motor_pusher(uint8_t interrupter_pin, uint8_t motor_pin, uint8_t read_pin)
+/**
+ * The constructor for the pusher that uses a LEGO NXT motor
+ * @param interrupter_pin is the pin on which the interrupter is attached
+ * @param motor_pin is the motor-shield pin (M1 to M4) on which the motor is attached
+ * @param tach_pin is the pin that reads the motor's tachometer
+ */
+motor_pusher::motor_pusher(uint8_t interrupter_pin, uint8_t motor_pin, uint8_t tach_pin)
     : component(motor_pin), _pin(motor_pin) {
   photo_sensor = new interrupter(interrupter_pin);
-  _motor_ptr   = new motor(MAX_SPEED, motor_pin, read_pin);
+  _motor_ptr   = new motor(MAX_SPEED, motor_pin, tach_pin);
 }
 
 motor_pusher::~motor_pusher() {

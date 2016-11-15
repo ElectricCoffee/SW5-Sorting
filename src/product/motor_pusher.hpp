@@ -14,9 +14,10 @@ public:
   interrupter *photo_sensor;
   void open();
   void close();
-  bool detect_brick();
   motor_pusher(uint8_t, uint8_t, uint8_t);
   ~motor_pusher();
   bool operator ==(const motor_pusher&) const;
+  // interface methods
+  bool detect_brick();
 };
 #endif
