@@ -6,13 +6,13 @@
 #include "component.hpp"
 #include "brick.hpp"
 
-struct sensor : public component, public brick_detector {
+struct sensor : public brick_detector {
   // setting a function = 0, makes it a "pure virtual function"
   // don't touch it.
-  sensor(uint8_t pin) : component(pin) {}
-  virtual brick        get_brick_data()  = 0;
-  virtual unsigned int check_measuring() = 0;
+  virtual brick get_brick_data();
+  bool detect_brick();
+  /*virtual unsigned int check_measuring() = 0;
   virtual unsigned int start_measuring() = 0;
-  virtual unsigned int stop_measuring()  = 0;
+  virtual unsigned int stop_measuring()  = 0;*/
 };
 #endif

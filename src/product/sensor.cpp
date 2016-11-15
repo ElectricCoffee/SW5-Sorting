@@ -1,3 +1,10 @@
 // The implementation file of sensor
 #include "sensor.hpp"
-// Sensor is a pure virtual class, i.e. an interface, so nothing's here
+
+brick sensor::get_brick_data() {
+  return brick::empty_brick();
+}
+
+bool sensor::detect_brick() {
+  return false;
+}
