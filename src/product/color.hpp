@@ -2,7 +2,7 @@
 #ifndef color_hpp
 #define color_hpp
 #include <Arduino.h>
-#include <src/SparkFunISL29125.h>
+#include <SparkFunISL29125.h>
 #include <Wire.h>
 #include "sensor.hpp"
 #include "brick.hpp"
