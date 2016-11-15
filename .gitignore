@@ -4,3 +4,8 @@
 .DS_Store
 .piolibdeps
 *.hash
+*.gch
+doc/*
+*~
+*.png
+.pioenvs/structure.hash

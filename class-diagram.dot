@@ -1,0 +1,35 @@
+digraph G {
+  rankdir = TB;
+  node [shape = record];
+  { rank = same;
+    main  [label = "{main   | + setup(): void\n+ loop(): void}"];
+    brick [label = "{brick  | + color: int\n+ size_x: int\n+ size_y: int\n+ size_z: int | + operator ==\n+ operator !=}"];
+  }
+  sensor       [label = "{sensor | + sensor(int)\nvirtual get_brick_data(): brick}"];
+  sensor_size  [label = "{size   | + get_size(): int}"];
+  sensor_color [label = "{color  | + get_color(): int}"];
+
+  {sensor_size, sensor_color}  -> sensor [arrowhead = onormal];
+
+  comp [label = "{component | + pin: int | + operator ==\n+ operator !=}"];
+
+  smi_brick_detector [label = "{\«interface\» brick_detector | virtual detect_brick(): bool}"];
+
+  module_compute [label = "{controller | - registered_bricks: vector\<brick\> | +register_brick(brick)\n+ register_component(component): Void}"];
+  module_pusher  [label = "{pusher     | + open(): void\n+ close(): void}"];
+  module_memory  [label = "{memory     | - bricks: brick[][] | + enqueue(brick): void\n+ dequeue(): brick}"];
+  module_motor   [label = "{motor      | + motor(byte, int)\n+ run_forward(bool): void\n+run_backward(bool): void\n+ stop(bool): void}"];
+
+  {sensor, module_pusher} -> smi_brick_detector [arrowhead = onormal];
+  {sensor, module_pusher, module_motor} -> comp [arrowhead = onormal];
+
+  module_compute -> {module_memory} [style = dashed, arrowhead = vee];
+  comp -> module_compute [arrowhead = vee];
+  smi_brick_detector -> module_compute [arrowhead = vee];
+
+  blueprint [label = "{blueprint | - required_bricks: vector\<brick\> | + is_brick_useful(brick): bool}"];
+
+  module_compute -> blueprint [style = dashed, arrowhead = vee];
+  {blueprint, module_compute, module_memory} -> brick [arrowhead = vee];
+  {module_compute, sensor} -> main [dir = back];
+}

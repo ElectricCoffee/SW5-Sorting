@@ -10,7 +10,9 @@ struct brick {
   int size_y;
   int size_z;
   brick(int, int, int, int);
+  brick combine_with(const brick&) const;
   bool operator ==(const brick &) const;
+  bool operator !=(const brick &) const;
   static brick empty_brick();
 };
 

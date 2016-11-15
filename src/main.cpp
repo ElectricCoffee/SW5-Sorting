@@ -1,13 +1,23 @@
 #include <Arduino.h>
+#include "product/controller.hpp"
+#include "product/motor_pusher.hpp"
+#include "product/color.hpp"
+#include "product/size.hpp"
 
 #ifndef UNIT_TEST // important line, do not remove
 
-void setup() {
+controller contr;
+color color_sensor;
+size  size_sensor;
+motor_pusher pusher1(10, 11);
 
+void setup() {
+  contr.register_sensor(color_sensor);
+  contr.register_component(pusher1);
 }
 
 void loop() {
-
+  contr.read_sensors();
 }
 
 #endif // important line, do not remove

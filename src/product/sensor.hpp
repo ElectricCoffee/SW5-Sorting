@@ -2,11 +2,12 @@
 #ifndef sensor_hpp
 #define sensor_hpp
 #include <Arduino.h>
+#include "brick_detector.hpp"
 #include "component.hpp"
+#include "brick.hpp"
 
-struct sensor : public component {
-  uint8_t pin;
-  sensor(uint8_t); //for initialising it
+struct sensor : public component, public brick_detector {
+  virtual brick get_brick_data() = 0;
   virtual void check_measuring();
 protected:
   virtual void start_measuring();
