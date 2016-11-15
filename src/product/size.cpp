@@ -44,3 +44,11 @@ void size::check_measuring() {
     }
   }
 }
+
+void size::stop_measuring_temporarily() {
+  _break_time = millis();
+}
+
+void size::continue_measuring() {
+  _current_time += millis() - _break_time;
+}
