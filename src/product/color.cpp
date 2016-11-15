@@ -1,36 +1,60 @@
 // The implementation file of color
 #include "color.hpp"
 
+/**
+ * Constructs an instance of the colour sensor.
+ * The ISL29125 Colour Sensor runs over the SDA and SCL pins
+ * @param interrupter_pin the pin of the photo-interrupter
+ */
+color::color(uint8_t interrupter_pin) : sensor(interrupter_pin) {
+  photo_sensor_ptr = new interrupter(interrupter_pin);
+  _RGB_sensor_ptr  = new SFE_ISL29125();
+}
+
+/** Destructor */
+color::~color() {
+  delete photo_sensor_ptr;
+  delete _RGB_sensor_ptr;
+}
+
+/**
+ * Shifts and adds the value of a colour read.
+ * This is done to ensure the individual RGB values
+ * are stored correctly in a unified integer.
+ * @param value The colour value to be pushed onto the integer.
+ */
+void color::add_color(uint8_t value) {
+  _newest_color <<= 8;
+  _newest_color += value;
+}
+
+/**
+ * Reads the colour value from the ISL29125 sensor
+ * @returns a single unsigned int containing the colour.
+ */
 unsigned int color::get_color() {
-  return color::start_measuring(); // temporary return value 0xDEAD
+  // the sensor returns a 16-bit integer...
+  uint8_t red   = (uint8_t) _RGB_sensor_ptr->readRed();
+  uint8_t green = (uint8_t) _RGB_sensor_ptr->readGreen();
+  uint8_t blue  = (uint8_t) _RGB_sensor_ptr->readBlue();
+
+  _newest_color = 0;
+  add_color(red);
+  add_color(green);
+  add_color(blue);
+
+  return _newest_color;
 }
 
-unsigned int color::start_measuring() {
-  SFE_ISL29125 RGB_sensor; //declaring the sensor as an object
-  unsigned int red = RGB_sensor.readRed(); //reads red value
-  unsigned int green = RGB_sensor.readGreen(); //reads green value
-  unsigned int blue = RGB_sensor.readBlue(); //reads blue value
-
-  newest_color = 0; // ensures reset newest color everytime
-  newest_color <<= red; //bitwise shift red.
-  newest_color <<= green;
-  newest_color <<= blue;
-
-  return newest_color;
-}
-
-void color::stop_measuring() {
-  newest_color = 57005; // Resets the color to 0xDEAD which means it waits for next brick 0xDEAD
-}
-
-//check_measuring will either clear the newest_color
-//or read the newest color from the sensor
-//check_measuring should only be called to read or reset a reading
-void color::check_measuring() {
-  if (newest_color != 57005) { //It will measure the sensor 0xDEAD
-    start_measuring();
-  }
-  else {
-    stop_measuring(); //newest_color will be reste since it's not 0xDEAD
+/**
+ * @returns an empty brick if below reading is below COLOR_THRESHOLD.
+ * Returns the brick if it isn't.
+ */
+brick color::get_brick_data() {
+  unsigned int tsvet = get_color();
+  if (tsvet <= COLOR_THRESHOLD) {
+    return brick::empty_brick();
+  } else {
+    return brick(tsvet, 0, 0, 0);
   }
 }

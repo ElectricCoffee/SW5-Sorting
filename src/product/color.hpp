@@ -2,19 +2,31 @@
 #ifndef color_hpp
 #define color_hpp
 #include <Arduino.h>
-#include "sensor.hpp"
 #include <src/SparkFunISL29125.h>
 #include <Wire.h>
+#include "sensor.hpp"
+#include "brick.hpp"
+#include "interrupter.hpp"
+
+#define RESET_VALUE 0
+#define COLOR_THRESHOLD 0x060907
 
 class color : public sensor {
 private:
-  unsigned int start_measuring();
-  void stop_measuring();
-  unsigned long current_time;
-  unsigned int newest_color;
+  // variables
+  unsigned int _newest_color;
+  SFE_ISL29125 *_RGB_sensor_ptr;
+  // methods
+  void add_color(uint8_t);
 public:
+  // variables
+  interrupter *photo_sensor_ptr;
+  // methods
+  color(uint8_t);
+  ~color();
   unsigned int get_color();
-  void check_measuring();
+  // interface methods
+  brick get_brick_data();
+  bool detect_brick();
 };
-
 #endif
