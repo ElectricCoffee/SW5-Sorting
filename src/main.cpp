@@ -7,9 +7,9 @@
 #ifndef UNIT_TEST // important line, do not remove
 
 controller contr;
-color color_sensor;
-size  size_sensor;
-motor_pusher pusher1(10, 11);
+color color_sensor(0);
+//size  size_sensor;
+motor_pusher pusher1(0, M4, 22);
 
 void setup() {
   contr.register_sensor(color_sensor);
