@@ -7,10 +7,11 @@
 #include "brick.hpp"
 
 struct sensor : public component, public brick_detector {
-  virtual brick get_brick_data() = 0;
-  virtual void check_measuring();
-protected:
-  virtual void start_measuring();
-  virtual void stop_measuring();
+  // setting a function = 0, makes it a "pure virtual function"
+  // don't touch it.
+  virtual brick        get_brick_data()  = 0;
+  virtual unsigned int check_measuring() = 0;
+  virtual unsigned int start_measuring() = 0;
+  virtual unsigned int stop_measuring()  = 0;
 };
 #endif
