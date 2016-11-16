@@ -8,6 +8,7 @@
  */
 motor::motor(uint8_t a_speed, uint8_t a_motor_number, uint8_t a_read_pin)
     : component(a_motor_number) {
+  pinMode(a_motor_number, OUTPUT); // may not be needed
   _speed = a_speed;
   _motor_ptr = new AF_DCMotor(a_motor_number);
   read_pin = a_read_pin;

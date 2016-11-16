@@ -2,6 +2,7 @@
 #include "servo_pusher.hpp"
 
 servo_pusher::servo_pusher(uint8_t interrupter_pin, uint8_t servo_pin) : component(servo_pin) {
+  pinMode(servo_pin, OUTPUT);
   photo_sensor = new interrupter(interrupter_pin);
   _servo.attach(servo_pin);
 }

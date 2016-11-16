@@ -3,6 +3,10 @@
 
 #define ENGINESPEED 0 //temporary, should be the speed of engine, prolly shouldnt be gotten here, maybe make a macro?
 
+size::size(uint8_t read_pin) : component(read_pin) {
+  pinMode(read_pin, INPUT);
+}
+
 /**
  * returns the last size it had read
  * doesnt measure a brick, only returns value of the last measured brick
