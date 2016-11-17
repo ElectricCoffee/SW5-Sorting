@@ -7,6 +7,6 @@
 [submodule "lib/AccelStepper"]
 	path = lib/AccelStepper
 	url = https://github.com/adafruit/AccelStepper
-[submodule "lib/SparkFun_ISL29125"]
-	path = lib/SparkFun_ISL29125
-	url = git@github.com:ElectricCoffee/SparkFun_ISL29125_Breakout_Arduino_Library.git
+[submodule "lib/SF_ISL29125"]
+	path = lib/SF_ISL29125
+	url = git@github.com:ElectricCoffee/SparkFun_ISL29125_Breakout_PlatformIO_Library.git
