@@ -13,6 +13,7 @@ private:
   unsigned long _break_time;
   unsigned int _newest_size;
 public:
+  size(uint8_t);
   unsigned int get_size();
   void check_measuring();
   void stop_measuring_temporarily();
