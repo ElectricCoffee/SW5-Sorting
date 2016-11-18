@@ -20,7 +20,7 @@ private:
 public:
   // variables
   uint8_t read_pin;
-  unsigned int speed;
+  double speed;
 
   // con and destructors
   motor(uint8_t, uint8_t, uint8_t);
