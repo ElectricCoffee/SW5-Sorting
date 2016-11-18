@@ -75,6 +75,15 @@ void motor::stop(bool ramp_down) {
   _motor_ptr->run(RELEASE);
 }
 
+/**
+ * Samples the tachometer on the motor for a given number of milliseconds
+ * @param sample_time_millis is the amount of time it needs to sample in
+ * it's set to 500ms by default
+ */
+void sample_speed(unsigned int sample_time_millis) {
+  
+}
+
 bool motor::operator==(const motor m) const {
   return _motor_ptr == m._motor_ptr
     &&   _speed     == m._speed;
