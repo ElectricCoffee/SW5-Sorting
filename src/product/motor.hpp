@@ -18,13 +18,19 @@ private:
   AF_DCMotor *_motor_ptr;
   uint8_t _speed = 0;
 public:
+  // variables
   uint8_t read_pin;
+  double speed;
+
+  // con and destructors
   motor(uint8_t, uint8_t, uint8_t);
   ~motor();
+
+  // methods
   void run_forward(bool ramp_up = false);
   void run_backward(bool ramp_up = false);
   void stop(bool ramp_down = false);
-
+  void sample_speed(unsigned int sample_time_millis = 500);
   bool operator==(const motor) const;
 };
 

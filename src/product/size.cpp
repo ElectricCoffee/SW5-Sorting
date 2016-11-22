@@ -3,7 +3,7 @@
 
 #define ENGINESPEED 0 //temporary, should be the speed of engine, prolly shouldnt be gotten here, maybe make a macro?
 
-size::size(uint8_t read_pin) : component(read_pin) {
+size::size(uint8_t read_pin, const motor &m) : component(read_pin), _motor(m) {
   pinMode(read_pin, INPUT);
 }
 
@@ -38,12 +38,12 @@ void size::stop_measuring() {
  */
 void size::check_measuring() {
   if (_newest_size != 0) { //this is when there isn't one being measured.
-    if (digitalRead(pin)) {
+    if (analgRead(pin)) {
       start_measuring();
     }
   }
   else { //this is for when there currently is one being measured.
-    if (!digitalRead(pin)) {
+    if (analogRead(pin) == 0) {
       stop_measuring();
     }
   }

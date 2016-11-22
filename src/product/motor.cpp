@@ -9,6 +9,7 @@
 motor::motor(uint8_t a_speed, uint8_t a_motor_number, uint8_t a_read_pin)
     : component(a_motor_number) {
   pinMode(a_motor_number, OUTPUT); // may not be needed
+  pinMode(a_read_pin, INPUT);
   _speed = a_speed;
   _motor_ptr = new AF_DCMotor(a_motor_number);
   read_pin = a_read_pin;
@@ -73,6 +74,32 @@ void motor::stop(bool ramp_down) {
   }
 
   _motor_ptr->run(RELEASE);
+}
+
+/**
+ * Samples the tachometer on the motor for a given number of milliseconds
+ * @param sample_time_millis is the amount of time it needs to sample in
+ * it's set to 500ms by default
+ * @param sample_time_millis the sample time in milliseconds
+ * @returns a speed in ticks/second (what ticks are, is up to you)
+ */
+void motor::sample_speed(unsigned int sample_time_millis) {
+  unsigned long start_time = millis();
+  unsigned long current_time   = 0;
+  bool last_high = false;
+  double ticks = 0;
+
+  do {
+    if (digitalRead(read_pin) == HIGH && !last_high) {
+      ticks++;
+      last_high = true;
+    } else if(digitalRead(read_pin) == LOW) {
+      last_high = false;
+    }
+    current_time = millis();
+  } while (current_time - start_time >= sample_time_millis);
+
+  speed = (ticks / sample_time_millis) * 1000;
 }
 
 bool motor::operator==(const motor m) const {

@@ -4,16 +4,19 @@
 #include <Arduino.h>
 #include "sensor.hpp"
 #include "component.hpp"
+#include "motor.hpp"
 
 class size : public sensor, public component {
 private:
-  void start_measuring();
-  void stop_measuring();
   unsigned long _current_time;
   unsigned long _break_time;
   unsigned int _newest_size;
+  const motor &_motor;
+
+  void start_measuring();
+  void stop_measuring();
 public:
-  size(uint8_t);
+  size(uint8_t, const motor&);
   unsigned int get_size();
   void check_measuring();
   void stop_measuring_temporarily();
