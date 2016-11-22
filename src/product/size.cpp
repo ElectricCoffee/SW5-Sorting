@@ -38,12 +38,12 @@ void size::stop_measuring() {
  */
 void size::check_measuring() {
   if (_newest_size != 0) { //this is when there isn't one being measured.
-    if (digitalRead(pin)) {
+    if (analgRead(pin)) {
       start_measuring();
     }
   }
   else { //this is for when there currently is one being measured.
-    if (!digitalRead(pin)) {
+    if (analogRead(pin) == 0) {
       stop_measuring();
     }
   }
