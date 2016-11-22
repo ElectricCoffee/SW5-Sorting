@@ -60,5 +60,5 @@ brick color::get_brick_data() {
 }
 
 bool color::detect_brick() {
-  return digitalRead(pin) == HIGH;
+  return analogRead(pin) > 0;
 }
