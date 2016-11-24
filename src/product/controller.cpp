@@ -16,7 +16,6 @@ controller::~controller() {
   for(s_it = _sensors.begin(); s_it != _sensors.end(); s_it++) {
     delete *s_it;
   }
-
 }
 
 /**
