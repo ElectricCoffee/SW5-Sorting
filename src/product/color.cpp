@@ -66,3 +66,7 @@ brick color::get_brick_data() {
 bool color::detect_brick() {
   return digitalRead(pin) == HIGH;
 }
+
+bool color::init() {
+  return _RGB_sensor_ptr.init();
+}

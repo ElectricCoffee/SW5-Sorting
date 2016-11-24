@@ -28,5 +28,6 @@ public:
   // interface methods
   brick get_brick_data();
   bool detect_brick();
+  bool init();
 };
 #endif

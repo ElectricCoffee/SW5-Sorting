@@ -9,3 +9,13 @@ brick sensor::get_brick_data() {
 bool sensor::detect_brick() {
   return false;
 }
+
+/**
+ * Initialises a sensor
+ * @returns true if the initialisation was successful
+ * @returns false if the initialisation was unsuccessful
+ */
+bool sensor::init() {
+  // default value in case a sensor doesn't need initialisation
+  return true;
+}
