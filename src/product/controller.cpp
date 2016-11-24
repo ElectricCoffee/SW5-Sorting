@@ -68,7 +68,7 @@ void controller::register_sensor(sensor &sen) {
   if (!sensor_exists) {
     ++_number_of_sensors;
     _sensors.push_back(&sen); // possibly dangerous
-
+    sen.init(); // may need a failure check.
     if (_number_of_sensors > 1) {
       _sensor_brick_buffers.push_back(deque<brick>());
     }

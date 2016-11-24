@@ -17,7 +17,7 @@ motor motor1(128, M2, NO_PIN);
 
 void setup() {
   Serial.begin(115200);
-  sparkfun_sensor.init();
+  //sparkfun_sensor.init();
   Serial.println("test");
   motor1.run_forward();
   contr.register_sensor(size_sensor);
