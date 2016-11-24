@@ -6,9 +6,9 @@
  * The ISL29125 Colour Sensor runs over the SDA and SCL pins
  * @param interrupter_pin the pin of the photo-interrupter
  */
-color::color(uint8_t interrupter_pin,SFE_ISL29125 &s) : component(interrupter_pin) {
+color::color(uint8_t interrupter_pin, SFE_ISL29125 &sensor) : component(interrupter_pin) {
   photo_sensor_ptr = new interrupter(interrupter_pin);
-  _RGB_sensor_ptr  = s;
+  _RGB_sensor_ptr  = sensor;
   //_RGB_sensor_ptr.init();
   pinMode(interrupter_pin, INPUT);
 }
@@ -16,7 +16,6 @@ color::color(uint8_t interrupter_pin,SFE_ISL29125 &s) : component(interrupter_pi
 /** Destructor */
 color::~color() {
   delete photo_sensor_ptr;
-  //delete _RGB_sensor_ptr;
 }
 
 /**

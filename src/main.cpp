@@ -9,15 +9,15 @@
 #define NO_PIN 0
 
 controller contr;
-SFE_ISL29125 c;
-color color_sensor(53,c);
+SFE_ISL29125 sparkfun_sensor;
+color color_sensor(53, sparkfun_sensor);
 size  size_sensor(A8);
 motor_pusher pusher1(NO_PIN, M4, 22);
 motor motor1(128, M2, NO_PIN);
 
 void setup() {
   Serial.begin(115200);
-  c.init();
+  sparkfun_sensor.init();
   Serial.println("test");
   motor1.run_forward();
   contr.register_sensor(size_sensor);
