@@ -87,7 +87,7 @@ void controller::read_sensors() {
     int index = std::distance(_sensors.begin(), it);
     brick old_brick = brick::empty_brick();
 
-    if ((*it)->get_brick_data() != brick::empty_brick() ){
+    if ((*it)->get_brick_data() != brick::empty_brick()) {
 
       if (it != first) { // if not first, pop from the previous buffer
         old_brick = _sensor_brick_buffers[index].back();
@@ -102,8 +102,6 @@ void controller::read_sensors() {
       } else { // else push to the brick deque
         _bricks.push_front(new_brick);
       }
-
     }
-
   }
 }
