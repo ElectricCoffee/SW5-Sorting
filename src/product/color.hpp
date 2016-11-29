@@ -25,7 +25,7 @@ public:
   color(uint8_t, SFE_ISL29125&);
   ~color();
   unsigned int get_color();
-  // interface methods
+  // inherited interface methods
   brick get_brick_data();
   bool detect_brick();
   bool init();
