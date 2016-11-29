@@ -15,7 +15,7 @@ class color : public sensor, public component {
 private:
   // variables
   unsigned int _newest_color;
-  SFE_ISL29125 &_RGB_sensor_ptr;
+  const SFE_ISL29125 &_RGB_sensor_ptr;
   // methods
   void add_color(uint8_t);
 public:
