@@ -54,6 +54,9 @@ unsigned int color::get_color() {
  * Returns the brick if it isn't.
  */
 brick color::get_brick_data() {
+  if(!detect_brick()){
+    return brick::empty_brick(); //if there isn't a brick then dont read it
+  }
   unsigned int tsvet = get_color();
   if (tsvet <= COLOR_THRESHOLD) {
     return brick::empty_brick();
