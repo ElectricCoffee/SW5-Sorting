@@ -64,6 +64,7 @@ brick color::get_brick_data() {
 
 bool color::detect_brick() {
   return digitalRead(pin) == HIGH;
+  return analogRead(pin) < 330; //with battery: 365 unblocked, 300 blocked
 }
 
 bool color::init() {
