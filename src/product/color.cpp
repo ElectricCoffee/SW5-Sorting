@@ -7,7 +7,7 @@
  * @param interrupter_pin the pin of the photo-interrupter
  */
 color::color(uint8_t interrupter_pin, SFE_ISL29125 &sensor)
-  : component(interrupter_pin), _RGB_sensor_ptr(sensor) {
+    : component(interrupter_pin), _RGB_sensor_ptr(sensor) {
   photo_sensor_ptr = new interrupter(interrupter_pin);
   pinMode(interrupter_pin, INPUT);
 }
