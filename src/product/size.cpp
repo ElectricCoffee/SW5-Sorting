@@ -44,14 +44,12 @@ void size::stop_measuring() {
 brick size::check_measuring() {
   Serial.println("starts measuring");
   if (_newest_size == 0) { //this is when there isn't one being measured.
-    if (analogRead(pin) > 0) {
-    if (analogRead(pin) < 300) {
+    if (analogRead(pin) > 0 && analogRead(pin) < 300) {
       start_measuring();
     }
   }
   else if(_newest_size == -1) { //this is for when there currently is one being measured.
-    if (!analogRead(pin)) {
-    if (analogRead(pin) > 320) {
+    if (!analogRead(pin) && analogRead(pin) > 320) {
       stop_measuring();
     }
   }
@@ -61,6 +59,7 @@ brick size::check_measuring() {
   }
   return brick::empty_brick();
 }
+
 
 void size::stop_measuring_temporarily() {
   _break_time = millis();
