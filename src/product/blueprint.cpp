@@ -40,10 +40,17 @@ bool blueprint::is_brick_useful(brick a_brick) {
 
   return false;
 }
-brick blueprint::convert_to_brick(String input){
-  char *buf = (char*)"";
+brick blueprint::convert_to_brick(char* input){
   brick br(0,0,0,0);
-  input.toCharArray(buf, 128);
-  sscanf(buf, _format_string, &br.color, &br.size_x);
+  sscanf(input, _format_string, &br.color, &br.size_x);
   return br;
+}
+void blueprint::add_from_file(char* file_data){
+  char* current_line;
+  current_line = strtok(file_data, "\n");
+  while (current_line != NULL) {
+    brick br = convert_to_brick(current_line);
+    _registered_bricks.push_front(br);
+    current_line = strtok(NULL, "\n");
+  }
 }

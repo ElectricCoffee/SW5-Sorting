@@ -3,20 +3,22 @@
 #define blueprint_hpp
 #include <StandardCplusplus.h>
 #include <deque>
+#include <cstring>
 #include <Arduino.h>
 #include "brick.hpp"
 
 class blueprint {
 private:
   std::deque<brick> _registered_bricks;
-  const char* _format_string = "COL:%d LEN:%d\n";
+  const char* _format_string = "COL:%d LEN:%d";
 public:
   blueprint();
   ~blueprint();
   brick front();
   void pop_front();
   bool is_brick_useful(brick);
-  brick convert_to_brick(String);
+  brick convert_to_brick(char*);
+  void add_from_file(char*);
 };
 
 #endif
