@@ -40,17 +40,20 @@ bool blueprint::is_brick_useful(brick a_brick) {
 
   return false;
 }
-brick blueprint::convert_to_brick(char* input){
-  brick br(0,0,0,0);
-  sscanf(input, _format_string, &br.color, &br.size_x);
-  return br;
+status blueprint::convert_to_brick(const char *input, brick *br_ptr) {
+  sscanf(input, _format_string, &br_ptr->color, &br_ptr->size_x);
+  return status::success(); // temporary until we figure out error handling
 }
-void blueprint::add_from_file(char* file_data){
-  char* current_line;
-  current_line = strtok(file_data, "\n");
+void blueprint::add_from_file(char *file_data) {
+  char* current_line = strtok(file_data, "\n");
   while (current_line != NULL) {
-    brick br = convert_to_brick(current_line);
-    _registered_bricks.push_front(br);
+    brick br;
+    status stat = convert_to_brick(current_line, &br);
+    if (stat.is_successful) {
+      _registered_bricks.push_front(br);
+    } else {
+      // what to do if it fails goes here.
+    }
     current_line = strtok(NULL, "\n");
   }
 }

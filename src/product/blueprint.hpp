@@ -6,6 +6,7 @@
 #include <cstring>
 #include <Arduino.h>
 #include "brick.hpp"
+#include "util/status.hpp"
 
 class blueprint {
 private:
@@ -17,7 +18,7 @@ public:
   brick front();
   void pop_front();
   bool is_brick_useful(brick);
-  brick convert_to_brick(char*);
+  status convert_to_brick(const char*, brick*);
   void add_from_file(char*);
 };
 
