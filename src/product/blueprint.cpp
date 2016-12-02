@@ -49,8 +49,15 @@ bool blueprint::is_brick_useful(brick a_brick) {
  * and a status::fail if the conversion failed.
  */
 status blueprint::convert_to_brick(const char *input, brick *br_ptr) {
-  sscanf(input, _format_string, &br_ptr->color, &br_ptr->size_x);
-  return status::success(); // temporary until we figure out error handling
+  int reads = sscanf(input, _format_string, &br_ptr->color, &br_ptr->size_x);
+  if (reads != 2) { // 2 is the number of inputs to the sscanf above
+    return status::failure (
+      "blueprint::convert_to_brick",
+      "Brick was of invalid format, could not read."
+    );
+  } else {
+    return status::success();
+  }
 }
 
 /**
@@ -66,7 +73,7 @@ void blueprint::add_from_file(char *file_data) {
     if (stat.is_successful) {
       _registered_bricks.push_front(br);
     } else {
-      // what to do if it fails goes here.
+      Serial.println(stat.error_message);
     }
     current_line = strtok(NULL, "\n");
   }
