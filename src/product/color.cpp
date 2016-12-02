@@ -54,21 +54,36 @@ unsigned int color::get_color() {
  * Returns the brick if it isn't.
  */
 brick color::get_brick_data() {
-  if(!detect_brick()){
-  if(!detect_brick() == flipping_pin_read){
   if(!detect_brick() == _flipping_pin_read){
     return brick::empty_brick(); //if there isn't a brick then dont read it
   }
-  unsigned int tsvet = get_color();
-  _flipping_pin_read = !_flipping_pin_read;
-  //Serial.println(tsvet);
-  flipping_pin_read = !flipping_pin_read;
-  if (tsvet <= COLOR_THRESHOLD) {
-    return brick::empty_brick();
-  } else {
-    Serial.println(tsvet);
-    return brick(tsvet, 0, 0, 0);
+
+  //the part below needs delay before reading
+
+  if(_current_time == 0){
+    _current_time = millis();
   }
+  _flipping_pin_read = !_flipping_pin_read;
+
+  if(_current_time + delay_between_photo_color <= millis()){
+    unsigned int tsvet = get_color();
+  //Serial.println(tsvet);
+  //Serial.println("in color get_brick_data");
+  _current_time = 0;
+
+    if (tsvet <= COLOR_THRESHOLD) {
+      Serial.println("in threshold");
+      return brick::empty_brick();
+
+    } else {
+      Serial.println(tsvet);
+      return brick(tsvet, 0, 0, 0);
+    }
+  }
+    Serial.println(_current_time);
+    Serial.println(millis());
+
+  return brick::empty_brick();
 }
 
 bool color::detect_brick() {

@@ -9,19 +9,19 @@
 #include "interrupter.hpp"
 
 #define RESET_VALUE 0
-#define COLOR_THRESHOLD 0x060907
 #define COLOR_THRESHOLD 0x00076c
 
 class color : public sensor, public component {
 private:
   // variables
   unsigned int _newest_color;
+  unsigned int _current_time;
   SFE_ISL29125 &_RGB_sensor_ptr;
   // methods
   void add_color(uint8_t);
-  bool flipping_pin_read = true;
   bool _flipping_pin_read = true;
 public:
+  unsigned int delay_between_photo_color = 10;
   // variables
   interrupter *photo_sensor_ptr;
   // methods
