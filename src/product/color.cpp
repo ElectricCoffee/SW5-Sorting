@@ -58,15 +58,17 @@ brick color::get_brick_data() {
     return brick::empty_brick(); //if there isn't a brick then dont read it
   }
   unsigned int tsvet = get_color();
+  //Serial.println(tsvet);
   if (tsvet <= COLOR_THRESHOLD) {
     return brick::empty_brick();
   } else {
+    Serial.println(tsvet);
     return brick(tsvet, 0, 0, 0);
   }
 }
 
 bool color::detect_brick() {
-  return digitalRead(pin) == HIGH;
+  //Serial.println(analogRead(pin));
   return analogRead(pin) < 330; //with battery: 365 unblocked, 300 blocked
 }
 

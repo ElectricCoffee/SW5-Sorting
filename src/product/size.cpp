@@ -12,7 +12,7 @@ size::size(uint8_t read_pin) : component(read_pin) {
  * doesnt measure a brick, only returns value of the last measured brick
  */
 unsigned int size::get_size() {
-  Serial.println(_newest_size);
+  //Serial.println(_newest_size);
   unsigned int temp_newest_size = (unsigned int)_newest_size;
   _newest_size = 0;
   return temp_newest_size;
@@ -26,7 +26,7 @@ unsigned int size::get_size() {
 void size::start_measuring() {
   _current_time = millis();
   _newest_size = -1;
-  Serial.println("starting measurement");
+  //Serial.println("starting measurement");
 }
 
 /**
@@ -34,7 +34,7 @@ void size::start_measuring() {
  */
 void size::stop_measuring() {
   _newest_size = ENGINESPEED * (millis() - _current_time);
-  Serial.println("ending measurement");
+  //Serial.println("ending measurement");
 }
 
 /**
@@ -42,15 +42,18 @@ void size::stop_measuring() {
  * i think this is what should be done in loop, maybe this is where there should be a signal
  */
 brick size::check_measuring() {
-  Serial.println("starts measuring");
+  //Serial.println("starts measuring");
   if (_newest_size == 0) { //this is when there isn't one being measured.
     if (analogRead(pin) > 0 && analogRead(pin) < 300) {
       start_measuring();
+      //Serial.println("starting measurement");
     }
+    //Serial.println(analogRead(A10));
   }
   else if(_newest_size == -1) { //this is for when there currently is one being measured.
     if (!analogRead(pin) && analogRead(pin) > 320) {
       stop_measuring();
+      //Serial.println("ending measurement");
     }
   }
   else {
@@ -70,6 +73,6 @@ void size::continue_measuring() {
 }
 
 brick size::get_brick_data(){
-  Serial.println("in get_brick_data");
+  //Serial.println("in get_brick_data");
   return check_measuring();
 }
