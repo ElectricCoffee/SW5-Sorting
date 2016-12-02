@@ -11,9 +11,9 @@
 controller contr;
 SFE_ISL29125 sparkfun_sensor;
 color color_sensor(A8, sparkfun_sensor);
-size  size_sensor(A10);
-motor_pusher pusher1(NO_PIN, M4, 22);
 motor motor1(128, M2, NO_PIN);
+size  size_sensor(A10, motor1);
+motor_pusher pusher1(NO_PIN, M4, 22);
 
 void setup() {
   Serial.begin(9600);
