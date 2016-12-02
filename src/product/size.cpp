@@ -3,7 +3,7 @@
 
 #define ENGINESPEED 10 //temporary, should be the speed of engine, prolly shouldnt be gotten here, maybe make a macro?
 
-size::size(uint8_t read_pin) : component(read_pin) {
+size::size(uint8_t read_pin, const motor &m) : component(read_pin), _motor(m) {
   pinMode(read_pin, INPUT);
 }
 
