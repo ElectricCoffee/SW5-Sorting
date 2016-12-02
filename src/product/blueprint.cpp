@@ -40,10 +40,24 @@ bool blueprint::is_brick_useful(brick a_brick) {
 
   return false;
 }
+
+/**
+ * Takes a c-string as an input, and attempts to split it into a brick.
+ * @param input is a c-string containing a line from the input-file.
+ * @param br_ptr is a brick-pointer output-parameter.
+ * @returns a status::success if successful,
+ * and a status::fail if the conversion failed.
+ */
 status blueprint::convert_to_brick(const char *input, brick *br_ptr) {
   sscanf(input, _format_string, &br_ptr->color, &br_ptr->size_x);
   return status::success(); // temporary until we figure out error handling
 }
+
+/**
+ * Takes the input-file as a string, and scans it line by line,
+ * converting each to a brick. The bricks are then added to _registered_bricks.
+ * @param file_data is a c-string containing the data from a blueprint file.
+ */
 void blueprint::add_from_file(char *file_data) {
   char* current_line = strtok(file_data, "\n");
   while (current_line != NULL) {
