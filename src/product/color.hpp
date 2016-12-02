@@ -18,6 +18,7 @@ private:
   SFE_ISL29125 &_RGB_sensor_ptr;
   // methods
   void add_color(uint8_t);
+  bool flipping_pin_read = true;
 public:
   // variables
   interrupter *photo_sensor_ptr;

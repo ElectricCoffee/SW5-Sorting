@@ -55,10 +55,12 @@ unsigned int color::get_color() {
  */
 brick color::get_brick_data() {
   if(!detect_brick()){
+  if(!detect_brick() == flipping_pin_read){
     return brick::empty_brick(); //if there isn't a brick then dont read it
   }
   unsigned int tsvet = get_color();
   //Serial.println(tsvet);
+  flipping_pin_read = !flipping_pin_read;
   if (tsvet <= COLOR_THRESHOLD) {
     return brick::empty_brick();
   } else {
