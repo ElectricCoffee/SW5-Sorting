@@ -29,7 +29,6 @@ void setup() {
 
 void loop() {
   contr.read_sensors();
-  delay(100);
 
   //Serial.println(analogRead(A10));
   //Serial.println(analogRead(A8));
