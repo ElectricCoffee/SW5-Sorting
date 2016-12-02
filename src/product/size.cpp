@@ -44,7 +44,7 @@ void size::stop_measuring() {
 brick size::check_measuring() {
   //Serial.println("starts measuring");
   if (_newest_size == 0) { //this is when there isn't one being measured.
-    if (analogRead(pin) > 0 && analogRead(pin) < 300) {
+    if (analogRead(pin) > 0 && analogRead(pin) < 310) {
       start_measuring();
       //Serial.println("starting measurement");
     }
