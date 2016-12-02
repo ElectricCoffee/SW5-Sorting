@@ -29,7 +29,7 @@ void blueprint::pop_front() {
  */
 bool blueprint::is_brick_useful(brick a_brick) {
   std::deque<brick>::iterator deque_iterator;
-  
+
   for (deque_iterator  = _registered_bricks.begin();
        deque_iterator != _registered_bricks.end();
        deque_iterator++) {
@@ -39,4 +39,11 @@ bool blueprint::is_brick_useful(brick a_brick) {
   }
 
   return false;
+}
+brick blueprint::convert_to_brick(String input){
+  char *buf = (char*)"";
+  brick br(0,0,0,0);
+  input.toCharArray(buf, 128);
+  sscanf(buf, _format_string, &br.color, &br.size_x);
+  return br;
 }
