@@ -10,6 +10,7 @@
 
 #define RESET_VALUE 0
 #define COLOR_THRESHOLD 0x060907
+#define COLOR_THRESHOLD 0x00076c
 
 class color : public sensor, public component {
 private:
