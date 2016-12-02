@@ -25,7 +25,7 @@ unsigned int size::get_size() {
  */
 void size::start_measuring() {
   _current_time = millis();
-  _newest_size = -1;
+  _newest_size = 1;
   //Serial.println("starting measurement");
 }
 
@@ -50,14 +50,15 @@ brick size::check_measuring() {
     }
     //Serial.println(analogRead(A10));
   }
-  else if(_newest_size == -1) { //this is for when there currently is one being measured.
-    if (!analogRead(pin) && analogRead(pin) > 320) {
+  else if(_newest_size == 1) { //this is for when there currently is one being measured.
+    if (analogRead(pin) > 320) {
       stop_measuring();
       //Serial.println("ending measurement");
     }
   }
   else {
     //this is when a brick has been made, but havent been read by controller
+    Serial.println("size");
     return brick(0, get_size() ,0, 0);
   }
   return brick::empty_brick();
