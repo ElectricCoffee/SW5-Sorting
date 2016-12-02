@@ -20,6 +20,7 @@ private:
   // methods
   void add_color(uint8_t);
   bool flipping_pin_read = true;
+  bool _flipping_pin_read = true;
 public:
   // variables
   interrupter *photo_sensor_ptr;
