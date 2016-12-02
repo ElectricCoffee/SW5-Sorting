@@ -8,7 +8,12 @@ brick::brick(unsigned int col, unsigned int x, unsigned int y, unsigned int z) {
   size_z = z;
 }
 
-brick::brick() : brick(0, 0, 0, 0) {}
+brick::brick() {
+  color = 0;
+  size_x = 0;
+  size_y = 0;
+  size_z = 0;
+}
 
 brick brick::combine_with(const brick &other) const {
   brick new_brick = *this;
