@@ -9,7 +9,7 @@
 #define NO_PIN 0
 
 controller contr;
-SFE_ISL29125 sparkfun_sensor;
+SFE_ISL29125 sparkfun_sensor; // OBS initialize in main
 color color_sensor(A8, sparkfun_sensor);
 size  size_sensor(A10);
 motor_pusher pusher1(NO_PIN, M4, 22);
@@ -17,7 +17,7 @@ motor motor1(128, M2, NO_PIN);
 
 void setup() {
   Serial.begin(9600);
-  //sparkfun_sensor.init();
+  sparkfun_sensor.init(); // initialising color sensor
   Serial.println("test");
   motor1.run_forward();
   contr.register_sensor(size_sensor);
