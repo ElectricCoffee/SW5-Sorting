@@ -88,6 +88,7 @@ void controller::read_sensors() {
     brick old_brick = brick::empty_brick();
 
     if ((*it)->get_brick_data() != brick::empty_brick()) {
+      Serial.println("mergebrick");
 
       if (it != first) { // if not first, pop from the previous buffer
         old_brick = _sensor_brick_buffers[index].back();
