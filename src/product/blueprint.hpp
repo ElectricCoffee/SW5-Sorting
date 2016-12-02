@@ -11,7 +11,6 @@
 class blueprint {
 private:
   std::deque<brick> _registered_bricks;
-  const char* _format_string = "COL:%d LEN:%d";
 public:
   blueprint();
   ~blueprint();

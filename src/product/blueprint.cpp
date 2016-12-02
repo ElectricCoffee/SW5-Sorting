@@ -49,7 +49,7 @@ bool blueprint::is_brick_useful(brick a_brick) {
  * and a status::fail if the conversion failed.
  */
 status blueprint::convert_to_brick(const char *input, brick *br_ptr) {
-  int reads = sscanf(input, _format_string, &br_ptr->color, &br_ptr->size_x);
+  int reads = sscanf(input, "COL:%d LEN:%d", &br_ptr->color, &br_ptr->size_x);
   if (reads != 2) { // 2 is the number of inputs to the sscanf above
     return status::failure (
       "blueprint::convert_to_brick",
