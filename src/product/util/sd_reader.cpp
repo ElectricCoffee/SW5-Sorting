@@ -34,11 +34,15 @@ status sd_reader::read_file_to_string(char *output) {
       int i;
       for (i = 0, it = de_buffer.begin(); it != de_buffer.end(); it++, i++) {
         output[i] = *it;
+        Serial.println(i);
       }
     } else {
+      Serial.println("fail realloc str");
       return status::failure(method_name, "Failed to reallocate string");
     }
-
+    Serial.println("starting output writing");
+    Serial.println(output);
+    Serial.println("finished writing output");
     return status::success();
   }
 }
