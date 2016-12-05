@@ -8,6 +8,9 @@
 #include <deque>
 #include "status.hpp"
 
+#define LINE_LEN 26
+#define SS_PIN 53
+
 class sd_reader {
   File _file;
 public:
