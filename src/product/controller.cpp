@@ -5,7 +5,18 @@ using namespace std;
 
 // empty for now
 controller::controller() {}
-controller::~controller() {}
+controller::~controller() {
+  vector<component*>::iterator c_it;
+  vector<sensor*>::iterator s_it;
+
+  for(c_it = _components.begin(); c_it != _components.end(); c_it++) {
+    delete *c_it;
+  }
+
+  for(s_it = _sensors.begin(); s_it != _sensors.end(); s_it++) {
+    delete *s_it;
+  }
+}
 
 /**
  * Registers bricks that have been scanned to keep track of the bricks in the system
@@ -21,18 +32,18 @@ void controller::register_brick(brick brk) {
  * @param comp the component to be added to the set.
  */
 void controller::register_component(component comp) {
-  vector<component>::iterator it;
+  vector<component*>::iterator it;
   bool component_exists = false;
 
   for (it  = _components.begin(); it != _components.end(); it++) {
-    if (*it == comp) {
+    if (**it == comp) {
       component_exists = true;
       break;
     }
   }
 
   if (!component_exists) {
-    _components.push_back(comp);
+    _components.push_back(&comp); // possibly dangerous
   }
 }
 
@@ -56,10 +67,10 @@ void controller::register_sensor(sensor &sen) {
 
   if (!sensor_exists) {
     ++_number_of_sensors;
-    _sensors.push_back(sen);
-
+    _sensors.push_back(&sen); // possibly dangerous
+    sen.init(); // may need a failure check.
     if (_number_of_sensors > 1) {
-      _sensor_buffers.push_back(deque<brick>());
+      _sensor_brick_buffers.push_back(deque<brick>());
     }
   }
 }
@@ -68,26 +79,29 @@ void controller::register_sensor(sensor &sen) {
  * Reads the sensors one by one to collect their input and construct a completed brick.
  */
 void controller::read_sensors() {
-  vector<sensor>::iterator it;
-  sensor *first = &_sensors.front(),
-         *last  = &_sensors.back();
+  vector<sensor*>::iterator it;
+  sensor **first = &_sensors.front(),
+         **last  = &_sensors.back();
 
   for (it = _sensors.begin(); it != _sensors.end(); ++it) {
     int index = std::distance(_sensors.begin(), it);
     brick old_brick = brick::empty_brick();
 
-    if (it != first) { // if not first, pop from the previous buffer
-      old_brick = _sensor_buffers[index].back();
-      _sensor_buffers[index - 1].pop_back();
-    }
+    if ((*it)->get_brick_data() != brick::empty_brick()) {
 
-    brick read_brick = it->get_brick_data(),
-          new_brick  = old_brick.combine_with(read_brick);
+      if (it != first) { // if not first, pop from the previous buffer
+        old_brick = _sensor_brick_buffers[index].back();
+        _sensor_brick_buffers[index - 1].pop_back();
+      }
 
-    if (it != last) { // if not last, push to the next buffer
-      _sensor_buffers[index].push_front(new_brick);
-    } else { // else push to the brick deque
-      _bricks.push_front(new_brick);
+      brick read_brick = (*it)->get_brick_data(),
+            new_brick  = old_brick.combine_with(read_brick);
+
+      if (it != last) { // if not last, push to the next buffer
+        _sensor_brick_buffers[index].push_front(new_brick);
+      } else { // else push to the brick deque
+        _bricks.push_front(new_brick);
+      }
     }
   }
 }

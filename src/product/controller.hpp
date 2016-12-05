@@ -15,9 +15,9 @@ class controller {
 private:
   unsigned _number_of_sensors = 0;
   std::list<brick> _bricks;
-  std::vector<std::deque<brick> > _sensor_buffers;
-  std::vector<component> _components;
-  std::vector<sensor> _sensors;
+  std::vector<std::deque<brick> > _sensor_brick_buffers;
+  std::vector<component*> _components;
+  std::vector<sensor*> _sensors;
 public:
   controller();
   ~controller();

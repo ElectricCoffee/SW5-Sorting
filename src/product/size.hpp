@@ -18,9 +18,10 @@ private:
 public:
   size(uint8_t, const motor&);
   unsigned int get_size();
-  void check_measuring();
+  brick check_measuring();
   void stop_measuring_temporarily();
   void continue_measuring();
+  virtual brick get_brick_data();
 };
 
 #endif

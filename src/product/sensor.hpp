@@ -11,6 +11,7 @@ struct sensor : public brick_detector {
   // don't touch it.
   virtual brick get_brick_data();
   bool detect_brick();
+  bool init();
   /*virtual unsigned int check_measuring() = 0;
   virtual unsigned int start_measuring() = 0;
   virtual unsigned int stop_measuring()  = 0;*/

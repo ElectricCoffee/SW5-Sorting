@@ -15,18 +15,19 @@ class color : public sensor, public component {
 private:
   // variables
   unsigned int _newest_color;
-  SFE_ISL29125 *_RGB_sensor_ptr;
+  SFE_ISL29125 &_RGB_sensor_ptr;
   // methods
   void add_color(uint8_t);
 public:
   // variables
   interrupter *photo_sensor_ptr;
   // methods
-  color(uint8_t);
+  color(uint8_t, SFE_ISL29125&);
   ~color();
   unsigned int get_color();
-  // interface methods
+  // inherited interface methods
   brick get_brick_data();
   bool detect_brick();
+  bool init();
 };
 #endif
