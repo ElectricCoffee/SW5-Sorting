@@ -12,7 +12,7 @@ sd_reader::~sd_reader() {
 }
 
 status sd_reader::read_file_to_string(char *output) {
-  char *method_name = "sd_reader::read_file_to_string";
+  const char *method_name = "sd_reader::read_file_to_string";
   std::deque<char> de_buffer;
   std::deque<char>::iterator it;
   if (!_file) {
