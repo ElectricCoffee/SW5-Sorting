@@ -2,7 +2,11 @@
 #include "sd_reader.hpp"
 
 sd_reader::sd_reader(const char *file_name) {
+  pinMode(53, OUTPUT);
+
+  while(!SD.begin(53));
   _file = SD.open(file_name);
+ Serial.println("Success!");
 }
 
 sd_reader::~sd_reader() {
