@@ -78,3 +78,15 @@ void blueprint::add_from_string(char *file_data) {
     current_line = strtok(NULL, "\n");
   }
 }
+
+void blueprint::add_from_file(const char* filename) {
+   char *file_data = NULL;
+   sd_reader sd(filename);
+   status read_status = sd.read_file_to_string(file_data);
+
+   if (read_status.is_successful) {
+     add_from_string(file_data);
+   } else {
+     Serial.println(read_status.error_message);
+   }
+}

@@ -7,6 +7,7 @@
 #include <Arduino.h>
 #include "brick.hpp"
 #include "util/status.hpp"
+#include "util/sd_reader.hpp"
 
 class blueprint {
 private:
@@ -19,6 +20,7 @@ public:
   bool is_brick_useful(brick);
   status convert_to_brick(const char*, brick*);
   void add_from_string(char*);
+  void add_from_file(const char*);
 };
 
 #endif
