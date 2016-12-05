@@ -4,6 +4,7 @@
 #include "product/motor_pusher.hpp"
 #include "product/color.hpp"
 #include "product/size.hpp"
+#include "product/blueprint.hpp"
 
 #ifndef UNIT_TEST // important line, do not remove
 #define NO_PIN 0
@@ -25,6 +26,9 @@ void setup() {
   pinMode(A8, INPUT);
   pinMode(A10, INPUT);
   //contr.register_component(pusher1);
+
+  blueprint test_blueprint; //dont use here in final build
+  test_blueprint.add_from_file("DATA.BRK");
 }
 
 void loop() {
