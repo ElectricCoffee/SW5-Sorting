@@ -2,6 +2,7 @@
 #ifndef sd_reader_hpp
 #define sd_reader_hpp
 #include <Arduino.h>
+#include <SPI.h>
 #include <SD.h>
 #include <StandardCplusplus.h>
 #include <deque>
