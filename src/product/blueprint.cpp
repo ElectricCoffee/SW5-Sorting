@@ -80,9 +80,10 @@ void blueprint::add_from_string(char *file_data) {
 }
 
 void blueprint::add_from_file(const char* filename) {
-   char *file_data = NULL;
+   char *file_data = (char*)malloc(sizeof(char*));
    sd_reader sd(filename);
    status read_status = sd.read_file_to_string(file_data);
+
 
    if (read_status.is_successful) {
      add_from_string(file_data);
