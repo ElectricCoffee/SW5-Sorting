@@ -22,15 +22,17 @@ status sd_reader::read_file_to_string(char *output) {
   if (!_file) {
     return status::failure(method_name, "Failed to open the file.");
   }
-  
+
   String str = _file.readString();
-  int strlen = str.length();
+  unsigned int strlen = str.length();
+  size_t bytes = (strlen + 1) * sizeof(char*);
 
   if (strlen == 0) {
     return status::failure(method_name, "Read 0 bytes from file, is this right?");
   }
 
-  void *result_ptr = realloc(output, (strlen + 1) * sizeof(char *));
+  void *result_ptr = realloc(output, bytes);
+  memset(output, '\0', bytes);
 
   if (result_ptr == NULL) {
     return status::failure(method_name, "Failed to resize the output");
