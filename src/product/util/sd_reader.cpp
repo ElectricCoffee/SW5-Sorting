@@ -21,24 +21,24 @@ status sd_reader::read_file_to_string(char *output) {
 
   if (!_file) {
     return status::failure(method_name, "Failed to open the file.");
-  } else {
-    String str = _file.readString();
-    int strlen = str.length();
-
-    if (strlen == 0) {
-      return status::failure(method_name, "Read 0 bytes from file, is this right?");
-    }
-
-    void *result_ptr = realloc(output, (strlen + 1) * sizeof(char *));
-
-    if (result_ptr == NULL) {
-      return status::failure(method_name, "Failed to resize the output");
-    }
-
-    str.toCharArray(output, strlen);
-
-    Serial.println(output);
-
-    return status::success();
   }
+  
+  String str = _file.readString();
+  int strlen = str.length();
+
+  if (strlen == 0) {
+    return status::failure(method_name, "Read 0 bytes from file, is this right?");
+  }
+
+  void *result_ptr = realloc(output, (strlen + 1) * sizeof(char *));
+
+  if (result_ptr == NULL) {
+    return status::failure(method_name, "Failed to resize the output");
+  }
+
+  str.toCharArray(output, strlen);
+
+  Serial.println(output);
+
+  return status::success();
 }
