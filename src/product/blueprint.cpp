@@ -79,15 +79,21 @@ void blueprint::add_from_string(char *file_data) {
   }
 }
 
+/**
+ * Reads a file and converts it to a number of bricks
+ * to be added to the _registered_bricks collection.
+ * @param The filename of the blueprint file as it's named on the SD card.
+ */
 void blueprint::add_from_file(const char* filename) {
-   char *file_data = (char*)malloc(sizeof(char*));
-   sd_reader sd(filename);
-   status read_status = sd.read_file_to_string(file_data);
+  // temporarily malloc some space for the string
+  // it's resized in read_file_to_string
+  char *file_data = (char*)malloc(sizeof(char*));
+  sd_reader sd(filename);
+  status read_status = sd.read_file_to_string(file_data);
 
-
-   if (read_status.is_successful) {
-     add_from_string(file_data);
-   } else {
-     Serial.println(read_status.error_message);
-   }
+  if (read_status.is_successful) {
+    add_from_string(file_data);
+  } else {
+    Serial.println(read_status.error_message);
+  }
 }
