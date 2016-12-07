@@ -45,6 +45,7 @@ brick size::check_measuring() {
   //Serial.println("starts measuring");
   if (_newest_size == 0) { //this is when there isn't one being measured.
     if (analogRead(pin) > 0 && analogRead(pin) < 310) {
+    if (analogRead(pin) > 0 && analogRead(pin) < PHOTOTHRESHOLD) {
       start_measuring();
       //Serial.println("starting measurement");
     }
@@ -52,6 +53,7 @@ brick size::check_measuring() {
   }
   else if(_newest_size == 1) { //this is for when there currently is one being measured.
     if (analogRead(pin) > 320) {
+    if (analogRead(pin) > PHOTOTHRESHOLD) {
       stop_measuring();
       //Serial.println("ending measurement");
     }
