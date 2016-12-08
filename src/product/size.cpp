@@ -1,7 +1,6 @@
 // The implementation file of size
 #include "size.hpp"
 
-#define ENGINESPEED 10 //temporary, should be the speed of engine, prolly shouldnt be gotten here, maybe make a macro?
 
 size::size(uint8_t read_pin, const motor &m) : component(read_pin), _motor(m) {
   pinMode(read_pin, INPUT);
@@ -33,7 +32,7 @@ void size::start_measuring() {
  * stops the measuring and calculates the speed
  */
 void size::stop_measuring() {
-  _newest_size = ENGINESPEED * (millis() - _current_time);
+  _newest_size =  convert_delay_size(millis() - _current_time);
   //Serial.println("ending measurement");
 }
 
@@ -76,4 +75,18 @@ void size::continue_measuring() {
 brick size::get_brick_data(){
   //Serial.println("in get_brick_data");
   return check_measuring();
+}
+
+/**
+ * converts the delay from the photo into a lego unit
+ * still temporary, should use the speed from the motor
+ @param a_delay the time it traveled between the interruptors
+*/
+unsigned int size::convert_delay_size(unsigned int a_delay){
+  Serial.println(a_delay);
+  unsigned int return_value = a_delay / DELAYBRICKRELATION;
+  if(a_delay%DELAYBRICKRELATION > DELAYBRICKRELATION * 0.5){
+    ++return_value;
+  }
+  return return_value;
 }

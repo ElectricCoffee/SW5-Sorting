@@ -7,6 +7,7 @@
 #include "motor.hpp"
 
 #define PHOTOTHRESHOLD 545
+#define DELAYBRICKRELATION 80
 
 class size : public sensor, public component {
 private:
@@ -17,6 +18,8 @@ private:
 
   void start_measuring();
   void stop_measuring();
+  unsigned int convert_delay_size(unsigned int);
+
 public:
   size(uint8_t, const motor&);
   unsigned int get_size();
