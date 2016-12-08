@@ -15,6 +15,9 @@ color color_sensor(A8, sparkfun_sensor);
 motor motor1(128, M2, NO_PIN);
 size  size_sensor(A10, motor1);
 motor_pusher pusher1(NO_PIN, M4, 22);
+
+// This is a string representation of a randomised brick dataset
+// used for the blueprint to know what data to look for
 char bricks_str[] =
   "COL:05794119 LEN:03\n"
   "COL:04544030 LEN:02\n"
