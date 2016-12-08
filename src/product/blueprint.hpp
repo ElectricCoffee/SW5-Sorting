@@ -18,7 +18,7 @@ public:
   void pop_front();
   bool is_brick_useful(brick);
   status convert_to_brick(const char*, brick*);
-  void add_from_file(char*);
+  void add_from_string(char*);
 };
 
 #endif

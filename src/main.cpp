@@ -4,6 +4,7 @@
 #include "product/motor_pusher.hpp"
 #include "product/color.hpp"
 #include "product/size.hpp"
+#include "product/blueprint.hpp"
 
 #ifndef UNIT_TEST // important line, do not remove
 #define NO_PIN 0
@@ -15,6 +16,36 @@ motor motor1(128, M2, NO_PIN);
 size  size_sensor(A10, motor1);
 motor_pusher pusher1(NO_PIN, M4, 22);
 
+// This is a string representation of a randomised brick dataset
+// used for the blueprint to know what data to look for
+char bricks_str[] =
+  "COL:05794119 LEN:03\n"
+  "COL:04544030 LEN:02\n"
+  "COL:05850652 LEN:04\n"
+  "COL:03759907 LEN:04\n"
+  "COL:00725001 LEN:03\n"
+  "COL:00527900 LEN:02\n"
+  "COL:05794119 LEN:04\n"
+  "COL:00527900 LEN:03\n"
+  "COL:00527900 LEN:04\n"
+  "COL:03759907 LEN:03\n"
+  "COL:04544030 LEN:03\n"
+  "COL:02430737 LEN:04\n"
+  "COL:00395527 LEN:04\n"
+  "COL:05850652 LEN:02\n"
+  "COL:00725001 LEN:04\n"
+  "COL:05850652 LEN:03\n"
+  "COL:02430737 LEN:03\n"
+  "COL:00395527 LEN:03\n"
+  "COL:03759907 LEN:02\n"
+  "COL:05794119 LEN:02\n"
+  "COL:02430737 LEN:02\n"
+  "COL:04544030 LEN:04\n"
+  "COL:00395527 LEN:02\n"
+  "COL:00725001 LEN:02\n"
+  "COL:05794119 LEN:03\n";
+
+
 void setup() {
   Serial.begin(9600);
   sparkfun_sensor.init(); // initialising color sensor
@@ -25,6 +56,10 @@ void setup() {
   pinMode(A8, INPUT);
   pinMode(A10, INPUT);
   //contr.register_component(pusher1);
+
+  blueprint test_blueprint; //dont use here in final build
+  test_blueprint.add_from_string(bricks_str);
+  //test_blueprint.add_from_file("DATA.BRK");
 }
 
 void loop() {

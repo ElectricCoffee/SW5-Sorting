@@ -65,7 +65,7 @@ status blueprint::convert_to_brick(const char *input, brick *br_ptr) {
  * converting each to a brick. The bricks are then added to _registered_bricks.
  * @param file_data is a c-string containing the data from a blueprint file.
  */
-void blueprint::add_from_file(char *file_data) {
+void blueprint::add_from_string(char *file_data) {
   char* current_line = strtok(file_data, "\n");
   while (current_line != NULL) {
     brick br;

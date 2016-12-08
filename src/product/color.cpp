@@ -88,7 +88,7 @@ brick color::get_brick_data() {
 
 bool color::detect_brick() {
   //Serial.println(analogRead(pin));
-  return analogRead(pin) < 335; //with battery: 358 unblocked, 310 blocked
+  return analogRead(pin) < PHOTO_THRESHOLD_COLOR; //with battery: 358 unblocked, 310 blocked
 }
 
 bool color::init() {

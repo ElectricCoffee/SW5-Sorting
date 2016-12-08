@@ -6,6 +6,8 @@
 #include "component.hpp"
 #include "motor.hpp"
 
+#define PHOTOTHRESHOLD 545
+
 class size : public sensor, public component {
 private:
   unsigned long _current_time;
