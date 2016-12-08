@@ -10,6 +10,7 @@
 
 #define RESET_VALUE 0
 #define COLOR_THRESHOLD 0x00076c
+#define PHOTO_THRESHOLD_COLOR 500
 
 class color : public sensor, public component {
 private:
@@ -21,7 +22,7 @@ private:
   void add_color(uint8_t);
   bool _flipping_pin_read = true;
 public:
-  unsigned int delay_between_photo_color = 10;
+  unsigned int delay_between_photo_color = 5;
   // variables
   interrupter *photo_sensor_ptr;
   // methods
