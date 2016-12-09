@@ -4,12 +4,11 @@
 
 class delay_handler {
 public:
-  bool should_do_now();
+  bool should_do_now(unsigned long);
   const unsigned long delay_length;
-  void start_delay();
   delay_handler(unsigned long);
 private:
-  unsigned long delay_start = 0;
+  //unsigned long delay_start = 0;
 
 
 };
