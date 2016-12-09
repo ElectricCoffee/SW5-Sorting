@@ -1,10 +1,10 @@
 // The implementation file of pusher
 #include "pusher.hpp"
-void pusher::add_push(bool state){
+void pusher::add_brick(bool state){
   bricks_to_push.push_back(new push_states(millis(), state));
 }
 
-void pusher::potentially_open(){
+void pusher::act_on_brick(){
   if(bricks_to_push.empty()){
     if(_delay_handler.should_do_now(bricks_to_push.front()->start_delay)){
       bricks_to_push.pop_front();

@@ -9,6 +9,9 @@ struct component {
 
   bool operator ==(const component&) const;
   bool operator !=(const component&) const;
+
+  virtual void add_brick(bool) = 0;
+  virtual void act_on_brick() = 0;
 };
 
 #endif
