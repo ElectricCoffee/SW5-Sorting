@@ -102,7 +102,28 @@ void controller::read_sensors() {
         _sensor_brick_buffers[index].push_front(new_brick);
       } else { // else push to the brick deque
         _bricks.push_front(new_brick);
+        _pushers.front()->add_brick(blprint.is_brick_useful(new_brick));
       }
+    }
+  }
+}
+
+void controller::register_pusher(pusher &a_pusher){
+  vector<pusher*>::iterator it;
+  bool pusher_exists = false;
+
+  if (!pusher_exists) {
+    _pushers.push_back(&a_pusher); // possibly dangerous
+  }
+}
+
+void controller::read_pushers(){
+  vector<pusher*>::iterator it;
+
+  for (it = _pushers.begin(); it != _pushers.end(); ++it) {
+    if(_pushers[it]->act_on_brick()){
+      //this is after a brick has been directed towards goal.
+      _bricks.pop_front();
     }
   }
 }
