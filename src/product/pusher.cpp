@@ -16,8 +16,8 @@ bool pusher::act_on_brick(){
           close();
         }
       }
+      return true;
     }
-    return true;
   }
   return false;
 }
