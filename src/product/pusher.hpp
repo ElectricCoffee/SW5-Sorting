@@ -7,7 +7,7 @@
 #include <deque>
 #include "util/delay_handler.hpp"
 #include "util/push_states.hpp"
-
+//tried to put add and act in component but had trouble with inheritance
 class pusher /*: public component, public brick_detector*/ {
   public:
     interrupter *photo_sensor; //it needs one, but maybe could be an input var in detect brick instead? just need pin number

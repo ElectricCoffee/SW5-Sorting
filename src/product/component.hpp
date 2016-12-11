@@ -9,6 +9,7 @@ struct component {
 
   bool operator ==(const component&) const;
   bool operator !=(const component&) const;
+
 };
 
 #endif

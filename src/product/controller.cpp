@@ -102,12 +102,13 @@ void controller::read_sensors() {
         _sensor_brick_buffers[index].push_front(new_brick);
       } else { // else push to the brick deque
         _bricks.push_front(new_brick);
+//this is where it puts the brick into the pushers
         _pushers.front()->add_brick(blprint.is_brick_useful(new_brick));
       }
     }
   }
 }
-
+//i just copied register component and changed typing
 void controller::register_pusher(pusher &a_pusher){
   vector<pusher*>::iterator it;
   bool pusher_exists = false;
@@ -116,14 +117,17 @@ void controller::register_pusher(pusher &a_pusher){
     _pushers.push_back(&a_pusher); // possibly dangerous
   }
 }
-
+/**
+ * checks each pusher to see if it needs to act on it
+ * will then remove the bricks which have been acted on
+ */
 void controller::read_pushers(){
   vector<pusher*>::iterator it;
 
   for (it = _pushers.begin(); it != _pushers.end(); ++it) {
     if(_pushers[it]->act_on_brick()){
       //this is after a brick has been directed towards goal.
-      _bricks.pop_front();
+      _bricks.pop_front(); //if the bricks need further processing change here
     }
   }
 }
