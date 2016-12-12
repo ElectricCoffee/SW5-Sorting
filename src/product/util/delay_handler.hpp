@@ -9,8 +9,6 @@ public:
   delay_handler(unsigned long);
 private:
   //unsigned long delay_start = 0;
-
-
 };
 
 #endif
