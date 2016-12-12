@@ -1,5 +1,6 @@
 #ifndef push_states_hpp
 #define push_states_hpp
+#include<Arduino.h>
 class push_states{
 public:
   bool state; //how the pusher should be when the brick arrives, true = open

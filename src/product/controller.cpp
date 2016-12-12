@@ -109,12 +109,12 @@ void controller::read_sensors() {
   }
 }
 //i just copied register component and changed typing
-void controller::register_pusher(pusher &a_pusher){
+void controller::register_pusher(pusher *a_pusher){
   vector<pusher*>::iterator it;
   bool pusher_exists = false;
 
   if (!pusher_exists) {
-    _pushers.push_back(&a_pusher); // possibly dangerous
+    _pushers.push_back(a_pusher); // possibly dangerous
   }
 }
 /**
@@ -122,12 +122,14 @@ void controller::register_pusher(pusher &a_pusher){
  * will then remove the bricks which have been acted on
  */
 void controller::read_pushers(){
-  vector<pusher*>::iterator it;
-
-  for (it = _pushers.begin(); it != _pushers.end(); ++it) {
-    if(_pushers[it]->act_on_brick()){
-      //this is after a brick has been directed towards goal.
-      _bricks.pop_front(); //if the bricks need further processing change here
-    }
+  //int it;
+  //Serial.println("a");
+  if(_pushers[0]->act_on_brick()){
+    Serial.println("true");
+    //this is after a brick has been directed towards goal.
+    _bricks.pop_front(); //if the bricks need further processing change here
   }
+  //for (it = _pushers.begin(); it != _pushers.end()+1; ++it) {
+
+  //}
 }

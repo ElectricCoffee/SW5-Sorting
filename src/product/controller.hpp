@@ -29,7 +29,7 @@ public:
   void register_component(component);
   void register_sensor(sensor&);
   void read_sensors();
-  void register_pusher(pusher&);
+  void register_pusher(pusher*);
   void read_pushers();
 };
 

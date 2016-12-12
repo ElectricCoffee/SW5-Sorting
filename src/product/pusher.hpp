@@ -13,11 +13,13 @@ class pusher /*: public component, public brick_detector*/ {
     interrupter *photo_sensor; //it needs one, but maybe could be an input var in detect brick instead? just need pin number
     virtual void open() = 0;
     virtual void close() = 0;
+    pusher(unsigned long);
     void add_brick(bool);
     bool act_on_brick(); //this is what should be checked each loop
   private:
     std::deque<push_states*> bricks_to_push;
-    delay_handler _delay_handler;
+    delay_handler *_delay_handler;
     bool _is_open = false;
+    uint8_t amount_bricks;
 };
 #endif
