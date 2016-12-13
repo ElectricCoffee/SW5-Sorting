@@ -54,7 +54,7 @@ brick brick::empty_brick() {
   return brick();
 }
 
-brick brick::from_byte_array(const uint8_t *arr) {
+brick brick::from_byte_array(const uint8_t arr[4]) {
   brick br;
   br.color  = arr[RED];
   br.color  = (br.color << BYTESIZE) + arr[GREEN];
