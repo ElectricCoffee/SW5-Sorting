@@ -78,3 +78,9 @@ void blueprint::add_from_string(char *file_data) {
     current_line = strtok(NULL, "\n");
   }
 }
+
+void blueprint::add_from_bytes(const brick_bytes bricks[], size_t arr_size) {
+  for (size_t i = 0; i < arr_size; i++) {
+    _registered_bricks.push_front(brick::from_byte_array(bricks[i]));
+  }
+}
