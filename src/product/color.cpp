@@ -77,7 +77,7 @@ brick color::get_brick_data() {
 
     } else {
       Serial.println(tsvet);
-      return brick(tsvet, 0, 0, 0);
+      return brick(tsvet, 0/*, 0, 0*/);
     }
   }
     Serial.println(_current_time);

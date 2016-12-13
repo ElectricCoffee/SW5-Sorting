@@ -2,19 +2,24 @@
 #ifndef brick_hpp
 #define brick_hpp
 
+#include <Arduino.h>
+
 /* structs in C++ are classes that are public by default
  * a struct was used intentionally here, don't change to class. */
 struct brick {
-  unsigned int color;
-  unsigned int size_x;
-  unsigned int size_y;
-  unsigned int size_z;
-  brick(unsigned int c, unsigned int x, unsigned int y, unsigned int z);
+  uint32_t color;
+  uint8_t size_x;
+/*
+  uint8_t size_y;
+  uint8_t size_z;
+*/
+  brick(uint32_t c, uint8_t x/*, uint8_t y, uint8_t z*/);
   brick();
   brick combine_with(const brick&) const;
   bool operator ==(const brick &) const;
   bool operator !=(const brick &) const;
   static brick empty_brick();
+  static brick from_byte_array(const uint8_t[4]);
 };
 
 #endif
