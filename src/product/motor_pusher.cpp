@@ -8,7 +8,7 @@
  * @param tach_pin is the pin that reads the motor's tachometer
  */
 motor_pusher::motor_pusher(uint8_t interrupter_pin, uint8_t motor_pin, uint8_t tach_pin, unsigned long a_delay_length)
-    : component(motor_pin), _pin(motor_pin), pusher(a_delay_length) {
+    : component(motor_pin), _pin(motor_pin) {
   photo_sensor = new interrupter(interrupter_pin);
   _motor_ptr   = new motor(MAX_SPEED, motor_pin, tach_pin);
   //_delay_handler = delay_handler(a_delay_length);
@@ -20,9 +20,6 @@ motor_pusher::~motor_pusher() {
 }
 
 void motor_pusher::move_pusher(uint8_t forward) {
-  int count = 0;
-  bool last_high = false;
-
   unsigned long start_time = millis();
 
   if (forward == FORWARD) {

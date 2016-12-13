@@ -103,7 +103,7 @@ void controller::read_sensors() {
       } else { // else push to the brick deque
         _bricks.push_front(new_brick);
 //this is where it puts the brick into the pushers
-        _pushers.front()->add_brick(blprint.is_brick_useful(new_brick));
+        _pushers.front()->add_state(blprint.is_brick_useful(new_brick));
       }
     }
   }
