@@ -3,6 +3,8 @@
 #define brick_hpp
 
 #include <Arduino.h>
+// til daniel: uint8_t == byte.
+typedef uint8_t brick_bytes[4];
 
 /* structs in C++ are classes that are public by default
  * a struct was used intentionally here, don't change to class. */
@@ -19,7 +21,7 @@ struct brick {
   bool operator ==(const brick &) const;
   bool operator !=(const brick &) const;
   static brick empty_brick();
-  static brick from_byte_array(const uint8_t[4]);
+  static brick from_byte_array(const brick_bytes);
 };
 
 #endif
