@@ -1,6 +1,6 @@
 // The implementation file of pusher
 #include "pusher.hpp"
-pusher::pusher(uint8_t motor_pin, uint8_t tach_pin, unsigned long a_delay_length)
+pusher::pusher(uint8_t motor_pin, uint8_t tach_pin, uint16_t a_delay_length)
     : component(motor_pin), _pin(motor_pin) {
   _delay_handler = new delay_handler(a_delay_length);
   _motor_ptr     = new motor(MAX_SPEED, motor_pin, tach_pin);
@@ -21,7 +21,7 @@ void pusher::close() {
 }
 
 void pusher::move_pusher(uint8_t forward) {
-  unsigned long start_time = millis();
+  uint16_t start_time = millis();
 
   if (forward == FORWARD) {
     _motor_ptr->run_forward();

@@ -20,7 +20,7 @@ private:
   void move_pusher(uint8_t);
 public:
   interrupter *photo_sensor; //it needs one, but maybe could be an input var in detect brick instead? just need pin number
-  pusher(uint8_t, uint8_t, unsigned long);
+  pusher(uint8_t, uint8_t, uint16_t);
   ~pusher();
   void open();
   void close();
