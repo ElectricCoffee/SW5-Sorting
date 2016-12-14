@@ -83,10 +83,11 @@ brick size::get_brick_data(){
  @param a_delay the time it traveled between the interruptors
 */
 unsigned int size::convert_delay_size(unsigned int a_delay){
-  Serial.println(a_delay);
+  //Serial.println(a_delay);
   unsigned int return_value = a_delay / DELAYBRICKRELATION;
   if(a_delay%DELAYBRICKRELATION > DELAYBRICKRELATION * 0.5){
     ++return_value;
   }
+  Serial.println(return_value);
   return return_value;
 }

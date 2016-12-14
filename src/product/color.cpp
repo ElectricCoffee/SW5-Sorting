@@ -37,9 +37,9 @@ unsigned int color::get_color() {
   uint8_t red   = (uint8_t) _RGB_sensor_ptr.readRed();
   uint8_t green = (uint8_t) _RGB_sensor_ptr.readGreen();
   uint8_t blue  = (uint8_t) _RGB_sensor_ptr.readBlue();
-  /*Serial.print("red = "); Serial.println(red,DEC);
+  Serial.print("red = "); Serial.println(red,DEC);
   Serial.print("green = "); Serial.println(green,DEC);
-  Serial.print("blue = "); Serial.println(blue,DEC);*/
+  Serial.print("blue = "); Serial.println(blue,DEC);
 
   _newest_color = 0;
   add_color(red);
@@ -76,12 +76,12 @@ brick color::get_brick_data() {
       return brick::empty_brick();
 
     } else {
-      Serial.println(tsvet);
+      //Serial.println(tsvet);
       return brick(tsvet, 0/*, 0, 0*/);
     }
   }
-    Serial.println(_current_time);
-    Serial.println(millis());
+    //Serial.println(_current_time);
+    //Serial.println(millis());
 
   return brick::empty_brick();
 }

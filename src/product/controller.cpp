@@ -153,7 +153,7 @@ void controller::read_pushers(){
   //vector<pusher*>::iterator it;
   //Serial.println("a");
   if(_pusher/*s[0]*/->act_on_brick()){
-    Serial.println("true");
+    //Serial.println("true");
     //this is after a brick has been directed towards goal.
     _bricks.pop_front(); //if the bricks need further processing change here
   }

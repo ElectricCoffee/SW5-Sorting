@@ -32,7 +32,7 @@ void pusher::move_pusher(uint8_t forward) {
   }
 
   while(start_time + 190 > millis()){
-    Serial.println("running motor");
+    //Serial.println("running motor");
   }
   _motor_ptr->stop();
 }
@@ -53,11 +53,11 @@ void pusher::add_state(bool state) {
  * @return true if the delay is over
  */
 bool pusher::act_on_brick() {
-  Serial.print(amount_bricks); Serial.println("pusher");
+  //Serial.print(amount_bricks); Serial.println("pusher");
 
   if(amount_bricks != 0){
     if(_delay_handler->should_do_now(bricks_to_push.front()->start_delay)){
-      Serial.println("its time");
+      //Serial.println("its time");
       bricks_to_push.pop_front();
       amount_bricks--;
       if(bricks_to_push.front()->state != _is_open){
@@ -69,7 +69,7 @@ bool pusher::act_on_brick() {
       }
       return true;
     }
-    Serial.println("not yet");
+    //Serial.println("not yet");
   }
   return false;
 }
