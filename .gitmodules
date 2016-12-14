@@ -4,9 +4,6 @@
 [submodule "lib/AFMotor"]
 	path = lib/AFMotor
 	url = https://github.com/adafruit/Adafruit-Motor-Shield-library
-[submodule "lib/AccelStepper"]
-	path = lib/AccelStepper
-	url = https://github.com/adafruit/AccelStepper
 [submodule "lib/SFISL29125"]
 	path = lib/SFISL29125
 	url = https://github.com/ElectricCoffee/SparkFun_ISL29125_Breakout_PlatformIO_Library
