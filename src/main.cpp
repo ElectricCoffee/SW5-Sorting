@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "product/controller.hpp"
 #include "product/motor.hpp"
-#include "product/motor_pusher.hpp"
+#include "product/pusher.hpp"
 #include "product/color.hpp"
 #include "product/size.hpp"
 #include "product/blueprint.hpp"
@@ -17,7 +17,7 @@ SFE_ISL29125 sparkfun_sensor; // OBS initialize in main
 color color_sensor(A8, sparkfun_sensor);
 motor motor1(128, M2, NO_PIN);
 size  size_sensor(A10, motor1);
-motor_pusher *pusher1 = new motor_pusher(NO_PIN, M1, 22, 5000);
+pusher *pusher1 = new pusher(M1, 22, 5000);
 
 // This is a string representation of a randomised brick dataset
 // used for the blueprint to know what data to look for
