@@ -120,8 +120,8 @@ void controller::register_sensors(sensor *sen1, sensor *sen2) {
 // }
 
 void controller::read_sensors() { // WARN: may clash
-  brick br1 = _sensors[0].get_brick_data();
-  brick br2 = _sensors[1].get_brick_data();
+  brick br1 = _sensors[0]->get_brick_data();
+  brick br2 = _sensors[1]->get_brick_data();
 
   if (br1 != brick::empty_brick()) {
     _brick_queue.push(br1);
