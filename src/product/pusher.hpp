@@ -9,7 +9,7 @@
 #include "util/delay_handler.hpp"
 #include "util/push_states.hpp"
 //tried to put add and act in component but had trouble with inheritance
-class pusher : public component, public brick_detector {
+class pusher : public component {
 private:
   const uint8_t _pin;
   motor *_motor_ptr;
