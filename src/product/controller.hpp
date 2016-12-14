@@ -24,7 +24,7 @@ private:
   //std::vector<pusher*> _pushers; //couldnt see a way to do it with component
   pusher *_pusher;
   //std::vector<sensor*> _sensors;
-  sensor _sensors[SENSOR_COUNT];
+  sensor *_sensors[SENSOR_COUNT];
   std::queue<brick> _brick_queue;
 public:
   blueprint blprint;
@@ -33,7 +33,7 @@ public:
   void register_brick(brick);
   //void register_component(component);
   // void register_sensor(sensor&);
-  void register_sensors(sensor&, sensor&);
+  void register_sensors(sensor*, sensor*);
   void read_sensors();
   // void register_pusher(pusher*);
   void read_pushers();

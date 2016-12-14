@@ -12,9 +12,9 @@
 #define MK_BRK(MR, MG, MB, ML) {MR, MG, MB, ML}
 
 SFE_ISL29125 sparkfun_sensor; // OBS initialize in main
-color color_sensor(A8, sparkfun_sensor);
+color *color_sensor = new color(A8, sparkfun_sensor);
 motor motor1(128, M2, NO_PIN);
-size  size_sensor(A10, motor1);
+size  *size_sensor = new size(A10, motor1);
 pusher *pusher1 = new pusher(M1, 22, 5000);
 controller contr(pusher1);
 

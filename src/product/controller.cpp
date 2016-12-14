@@ -79,7 +79,7 @@ void controller::register_brick(brick brk) {
 //   }
 // }
 
-void controller::register_sensors(sensor &sen1, sensor &sen2) {
+void controller::register_sensors(sensor *sen1, sensor *sen2) {
   _sensors[0] = sen1;
   _sensors[1] = sen2;
 }
