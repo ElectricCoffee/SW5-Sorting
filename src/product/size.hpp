@@ -7,7 +7,7 @@
 #include "motor.hpp"
 
 #define PHOTOTHRESHOLD 545
-#define DELAYBRICKRELATION 80
+#define DELAYBRICKRELATION 82
 
 class size : public sensor, public component {
 private:

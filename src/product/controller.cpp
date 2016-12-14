@@ -124,10 +124,12 @@ void controller::read_sensors() { // WARN: may clash
   brick br2 = _sensors[1]->get_brick_data();
 
   if (br1 != brick::empty_brick()) {
+    Serial.println("interruptor");
     _brick_queue.push(br1);
   }
 
-  if (br2 != brick::empty_brick()) {
+  if (br2 != brick::empty_brick() && _brick_queue.size() != 0) {
+    Serial.println("Color interruptor");
     brick temp_brick = _brick_queue.back();
     _brick_queue.pop();
     temp_brick = temp_brick.combine_with(br2);
