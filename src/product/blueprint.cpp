@@ -6,7 +6,7 @@ blueprint::blueprint() {
 }
 
 // This constructor calls the add_from_bytes code internally for convenience.
-// Reduces creating a constructor from two steps to one.
+// Reduces creating a populated blueprint from two steps to one.
 blueprint::blueprint(const brick_bytes bricks[], size_t arr_size) : blueprint() {
   this->add_from_bytes(bricks, arr_size);
 }
