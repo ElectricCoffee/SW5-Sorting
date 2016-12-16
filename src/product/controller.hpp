@@ -26,9 +26,9 @@ private:
   //std::vector<sensor*> _sensors;
   sensor *_sensors[SENSOR_COUNT];
   std::queue<brick> _brick_queue;
+  blueprint _blueprint;
 public:
-  blueprint blprint;
-  controller(pusher*);
+  controller(pusher*, blueprint&);
   ~controller();
   void register_brick(brick);
   //void register_component(component);

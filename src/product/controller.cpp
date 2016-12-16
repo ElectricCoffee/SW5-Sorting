@@ -4,8 +4,9 @@
 using namespace std;
 
 // empty for now
-controller::controller(pusher *p) {
+controller::controller(pusher *p, blueprint &blprt) {
   _pusher = p;
+  _blueprint = blprt;
 }
 controller::~controller() {
   // vector<component*>::iterator c_it;
@@ -112,8 +113,8 @@ void controller::register_sensors(sensor *sen1, sensor *sen2) {
 //       } else { // else push to the brick deque
 //         _bricks.push_front(new_brick);
 // //this is where it puts the brick into the pushers
-//         //_pushers.front()->add_state(blprint.is_brick_useful(new_brick));
-//         _pusher->add_state(blprint.is_brick_useful(new_brick));
+//         //_pushers.front()->add_state(_blueprint.is_brick_useful(new_brick));
+//         _pusher->add_state(_blueprint.is_brick_useful(new_brick));
 //       }
 //     }
 //   }
@@ -134,7 +135,7 @@ void controller::read_sensors() { // WARN: may clash
     _brick_queue.pop();
     temp_brick = temp_brick.combine_with(br2);
     _bricks.push_front(temp_brick);
-    _pusher->add_state(blprint.is_brick_useful(temp_brick));
+    _pusher->add_state(_blueprint.is_brick_useful(temp_brick));
   } // else do nothing
 }
 
