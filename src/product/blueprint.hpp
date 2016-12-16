@@ -12,7 +12,8 @@ class blueprint {
 private:
   std::deque<brick> _registered_bricks;
 public:
-  // blueprint();
+  blueprint();
+  blueprint(const brick_bytes bricks[], size_t);
   // ~blueprint();
   brick front();
   void pop_front();

@@ -1,9 +1,16 @@
 // The implementation file of blueprint
 #include "blueprint.hpp"
 
-// blueprint::blueprint() {
-//   // add initialiser code here
-// }
+blueprint::blueprint() {
+  // add initialiser code here
+}
+
+// This constructor calls the add_from_bytes code internally for convenience.
+// Reduces creating a constructor from two steps to one.
+blueprint::blueprint(const brick_bytes bricks[], size_t arr_size) : blueprint() {
+  this->add_from_bytes(bricks, arr_size);
+}
+
 //
 // blueprint::~blueprint() {
 //   // add destruction code here
