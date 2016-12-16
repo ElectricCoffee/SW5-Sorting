@@ -8,6 +8,13 @@ brick::brick(unsigned int col, unsigned int x, unsigned int y, unsigned int z) {
   size_z = z;
 }
 
+brick::brick() {
+  color = 0;
+  size_x = 0;
+  size_y = 0;
+  size_z = 0;
+}
+
 brick brick::combine_with(const brick &other) const {
   brick new_brick = *this;
   new_brick.color  = other.color  ?: color;
@@ -33,5 +40,5 @@ bool brick::operator !=(const brick &that) const {
  * @return An instance of a brick with all fields set to 0
  */
 brick brick::empty_brick() {
-  return brick(0, 0, 0, 0);
+  return brick();
 }

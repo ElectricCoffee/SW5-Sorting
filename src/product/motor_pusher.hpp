@@ -4,6 +4,7 @@
 #include "motor.hpp"
 #include "interrupter.hpp"
 #include "brick_detector.hpp"
+#include "pusher.hpp"
 
 class motor_pusher : public component, public brick_detector {
 private:
@@ -12,10 +13,10 @@ private:
   void move_pusher(uint8_t);
 public:
   interrupter *photo_sensor;
+  motor_pusher(uint8_t, uint8_t, uint8_t, unsigned long);
+  ~motor_pusher();
   void open();
   void close();
-  motor_pusher(uint8_t, uint8_t, uint8_t);
-  ~motor_pusher();
   bool operator ==(const motor_pusher&) const;
   // interface methods
   bool detect_brick();
