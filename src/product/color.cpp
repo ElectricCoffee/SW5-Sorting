@@ -62,14 +62,15 @@ brick color::get_brick_data() {
 
   if(_current_time == 0){
     _current_time = millis();
+    _flipping_pin_read = !_flipping_pin_read;
   }
-  _flipping_pin_read = !_flipping_pin_read;
 
   if(_current_time + delay_between_photo_color <= millis()){
     unsigned int tsvet = get_color();
   //Serial.println(tsvet);
   //Serial.println("in color get_brick_data");
   _current_time = 0;
+  _flipping_pin_read = !_flipping_pin_read;
 
     if (tsvet <= COLOR_THRESHOLD) {
       Serial.println("in threshold");
