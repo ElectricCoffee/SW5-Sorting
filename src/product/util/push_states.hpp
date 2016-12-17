@@ -2,7 +2,7 @@
 #define push_states_hpp
 #include<Arduino.h>
 
-enum push_state { OPEN, CLOSED };
+enum push_state { CLOSED, OPEN };
 
 class state_time {
 public:
