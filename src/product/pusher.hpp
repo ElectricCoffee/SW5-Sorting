@@ -13,9 +13,9 @@ class pusher : public component {
 private:
   const uint8_t _pin;
   motor *_motor_ptr;
-  std::deque<push_states*> bricks_to_push;
+  std::deque<state_time*> bricks_to_push;
   delay_handler *_delay_handler;
-  bool _is_open = false;
+  push_state _state = CLOSED;
   uint8_t amount_bricks;
   void move_pusher(uint8_t);
 public:
@@ -24,7 +24,7 @@ public:
   ~pusher();
   void open();
   void close();
-  void add_state(bool);
+  void add_state(push_state);
   bool act_on_brick(); //this is what should be checked each loop
 
   bool operator ==(const pusher&) const;
