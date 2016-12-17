@@ -3,6 +3,7 @@
 
 blueprint::blueprint() {
   // add initialiser code here
+  //deque_iterator = _registered_bricks.begin();
 }
 
 // This constructor calls the add_from_bytes code internally for convenience.
@@ -35,16 +36,16 @@ void blueprint::pop_front() {
  * @param brick the brick to be checked
  */
 bool blueprint::is_brick_useful(brick a_brick) {
-  std::deque<brick>::iterator deque_iterator;
+  //std::deque<brick>::iterator deque_iterator;
 
-  for (deque_iterator  = _registered_bricks.begin();
+  /*for (deque_iterator  = _registered_bricks.begin();
        deque_iterator != _registered_bricks.end();
-       deque_iterator++) {
-    if (*deque_iterator == a_brick) {
+       deque_iterator++) {*/
+    if (_registered_bricks[deque_iterator] == a_brick) {
+      deque_iterator++;
       return true;
     } // else continue looking
-  }
-
+  //}
   return false;
 }
 

@@ -11,6 +11,7 @@
 class blueprint {
 private:
   std::deque<brick> _registered_bricks;
+  uint8_t deque_iterator = 0;
 public:
   blueprint();
   blueprint(const brick_bytes bricks[], size_t);
