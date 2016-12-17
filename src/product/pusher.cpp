@@ -14,10 +14,12 @@ pusher::~pusher() {
 
 void pusher::open() {
   move_pusher(FORWARD);
+  _is_open = true;
 }
 
 void pusher::close() {
   move_pusher(BACKWARD);
+  _is_open = false;
 }
 
 void pusher::move_pusher(uint8_t forward) {
@@ -43,8 +45,10 @@ void pusher::move_pusher(uint8_t forward) {
  * @param state the state the pusher needs to be in, true = open
  */
 void pusher::add_state(bool state) {
-  bricks_to_push.push_back(new push_states(millis(), state));
+  bricks_to_push.push_back(new push_states(state, millis()));
   amount_bricks++; //NEITHER SIZE NOR EMPTY METHOD IN DEQUE WORKED
+  Serial.print("state is: ");
+  Serial.println(state);
 }
 
 /**
@@ -57,16 +61,23 @@ bool pusher::act_on_brick() {
 
   if(amount_bricks != 0){
     if(_delay_handler->should_do_now(bricks_to_push.front()->start_delay)){
-      //Serial.println("its time");
-      bricks_to_push.pop_front();
-      amount_bricks--;
+      Serial.print("length queue is: ");
+      Serial.println(bricks_to_push.size());
+      Serial.print("current state:");
+      Serial.print(_is_open);
+      Serial.print("  Target state is: ");
+      Serial.println(bricks_to_push.front()->state);
       if(bricks_to_push.front()->state != _is_open){
         if(bricks_to_push.front()->state){
+          Serial.println("opening");
           open();
         } else{
+          Serial.println("closing");
           close();
         }
-      }
+      } else {Serial.println("doing nothing");}
+      bricks_to_push.pop_front();
+      amount_bricks--;
       return true;
     }
     //Serial.println("not yet");
