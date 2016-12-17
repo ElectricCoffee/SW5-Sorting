@@ -68,7 +68,7 @@ bool pusher::act_on_brick() {
       Serial.print("  Target state is: ");
       Serial.println(bricks_to_push.front()->state);
       if(bricks_to_push.front()->state != _state) {
-        if(bricks_to_push.front()->state){
+        if(bricks_to_push.front()->state == OPEN){
           Serial.println("opening");
           open();
         } else{
