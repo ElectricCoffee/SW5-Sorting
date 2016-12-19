@@ -1,0 +1,47 @@
+digraph G {
+  //rankdir = TB;
+  node [shape = rectangle];
+  // Classes in lexicographic order
+  blueprint;
+  brick_detector [label = "\«interface\»\nbrick_detector"];
+  brick;
+  color_sensor [label = "color"];
+  comp [label = "component"];
+  controller;
+  interruptor;
+  motor;
+  pusher;
+  sensor;
+  size_sensor [label = "size"];
+  main;
+
+  // Inheritance and implementation.
+  {color_sensor, size_sensor, motor, interruptor} -> comp [arrowhead = onormal];
+  {color_sensor, size_sensor} -> sensor [arrowhead = onormal];
+  {sensor, interruptor} -> brick_detector [arrowhead = onormal];
+
+  // "has a" relations (aggregations)
+  controller -> {pusher, comp, sensor, brick} [arrowtail = odiamond, dir = back];
+  blueprint -> brick [arrowtail = odiamond, dir = back];
+
+  // "uses a" relations (dependency)
+  main -> {controller, motor} [style = dashed, arrowhead = vee];
+  controller -> blueprint [style = dashed, arrowhead = vee];
+  color_sensor -> interruptor [style = dashed, arrowhead = vee];
+  pusher -> motor [style = dashed, arrowhead = vee];
+  size_sensor -> motor [style = dashed, arrowhead = vee];
+
+  // association
+  sensor -> brick [arrowhead = vee];
+
+  subgraph cluster_interruptable {
+    style = invis;
+    sensor; comp;
+    interruptor; color_sensor; size_sensor; brick_detector;
+  }
+
+  subgraph cluster_foo {
+    style = invis;
+    brick; blueprint;
+  }
+}
