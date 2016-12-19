@@ -6,7 +6,7 @@
 #include <cstring>
 #include <Arduino.h>
 #include "brick.hpp"
-#include "util/status.hpp"
+//#include "util/status.hpp"
 
 class blueprint {
 private:

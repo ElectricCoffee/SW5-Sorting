@@ -8,7 +8,7 @@
 #include <queue>
 #include <iterator>
 #include "brick.hpp"
-#include "component.hpp"
+//#include "component.hpp"
 #include "sensor.hpp"
 #include "pusher.hpp"
 #include "blueprint.hpp"
@@ -17,7 +17,7 @@
 
 class controller {
 private:
-  unsigned _number_of_sensors = 0;
+  //unsigned _number_of_sensors = 0;
   std::list<brick> _bricks;
   //std::vector<std::deque<brick> > _sensor_brick_buffers;
   //std::vector<component*> _components;

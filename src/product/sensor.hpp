@@ -3,7 +3,7 @@
 #define sensor_hpp
 #include <Arduino.h>
 #include "brick_detector.hpp"
-#include "component.hpp"
+//#include "component.hpp"
 #include "brick.hpp"
 
 struct sensor : public brick_detector {

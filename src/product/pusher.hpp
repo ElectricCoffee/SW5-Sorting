@@ -4,8 +4,8 @@
 #include <Arduino.h>
 #include <deque>
 #include "motor.hpp"
-#include "brick_detector.hpp"
-#include "interrupter.hpp"
+//#include "brick_detector.hpp"
+//#include "interrupter.hpp"
 #include "util/delay_handler.hpp"
 #include "util/push_states.hpp"
 //tried to put add and act in component but had trouble with inheritance
@@ -19,7 +19,7 @@ private:
   uint8_t amount_bricks;
   void move_pusher(uint8_t);
 public:
-  interrupter *photo_sensor; //it needs one, but maybe could be an input var in detect brick instead? just need pin number
+  //interrupter *photo_sensor; //it needs one, but maybe could be an input var in detect brick instead? just need pin number
   pusher(uint8_t, uint8_t, uint16_t);
   ~pusher();
   void open();

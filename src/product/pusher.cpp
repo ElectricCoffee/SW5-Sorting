@@ -88,6 +88,6 @@ bool pusher::act_on_brick() {
 }
 
 bool pusher::operator==(const pusher &p) const {
-  return photo_sensor == p.photo_sensor
-    &&   _pin == p._pin;
+  return /*photo_sensor == p.photo_sensor
+    &&   */_pin == p._pin;
 }
