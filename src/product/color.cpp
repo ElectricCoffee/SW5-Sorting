@@ -32,21 +32,23 @@ void color::add_color(uint8_t value) {
  * Reads the colour value from the ISL29125 sensor
  * @returns a single unsigned int containing the colour.
  */
-unsigned int color::get_color() {
+void color::get_color() {
   // the sensor returns a 16-bit integer...
-  uint8_t red   = (uint8_t) _RGB_sensor_ptr.readRed();
-  uint8_t green = (uint8_t) _RGB_sensor_ptr.readGreen();
-  uint8_t blue  = (uint8_t) _RGB_sensor_ptr.readBlue();
-  Serial.print("red = "); Serial.println(red,DEC);
-  Serial.print("green = "); Serial.println(green,DEC);
-  Serial.print("blue = "); Serial.println(blue,DEC);
-
+  red   = (uint8_t) _RGB_sensor_ptr.readRed();
+  green = (uint8_t) _RGB_sensor_ptr.readGreen();
+  blue  = (uint8_t) _RGB_sensor_ptr.readBlue();
+/*
+  Serial.print("red = "); Serial.println(red,HEX);
+  Serial.print("green = "); Serial.println(green,HEX);
+  Serial.print("blue = "); Serial.println(blue,HEX);
+  /*
   _newest_color = 0;
   add_color(red);
   add_color(green);
   add_color(blue);
 
   return _newest_color;
+*/
 }
 
 /**
@@ -66,24 +68,39 @@ brick color::get_brick_data() {
   }
 
   if(_current_time + delay_between_photo_color <= millis()){
-    unsigned int tsvet = get_color();
+    get_color();
   //Serial.println(tsvet);
   //Serial.println("in color get_brick_data");
   _current_time = 0;
   _flipping_pin_read = !_flipping_pin_read;
 
-    if (tsvet <= COLOR_THRESHOLD) {
-      Serial.println("in threshold");
+/*
+  //TEMPORARY, IF THIS GETS PUSHED ANDERS FUCKED UP
+  Serial.println("giving fake color");
+  _newest_color = 0;
+  add_color(14);
+  add_color(19);
+  add_color(8);
+  return brick(_newest_color, 0);
+  //END OF TEMPORARY
+*/
+    if (red <= RED_THRESHOLD && green <= GREEN_THRESHOLD) {
       return brick::empty_brick();
 
     } else {
       //Serial.println(tsvet);
-      return brick(tsvet, 0/*, 0, 0*/);
+      return brick(red,green,blue, 0/*, 0, 0*/);
     }
-  }
-    //Serial.println(_current_time);
-    //Serial.println(millis());
+    }
 
+    /*
+    Serial.print("delay is weird: ");
+    Serial.print(_current_time);
+    Serial.print(" ");
+    Serial.print(delay_between_photo_color);
+    Serial.print(" ");
+    Serial.println(millis());
+    */
   return brick::empty_brick();
 }
 
@@ -91,7 +108,7 @@ bool color::detect_brick() {
   //Serial.println(analogRead(pin));
   return analogRead(pin) < PHOTO_THRESHOLD_COLOR; //with battery: 358 unblocked, 310 blocked
 }
-
+/*
 bool color::init() {
-  return _RGB_sensor_ptr.init();
-}
+  return _RGB_sensor_ptr.init()s;
+}*/

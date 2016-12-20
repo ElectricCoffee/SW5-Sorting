@@ -2,7 +2,7 @@
 #ifndef blueprint_hpp
 #define blueprint_hpp
 #include <StandardCplusplus.h>
-#include <deque>
+#include <queue>
 #include <cstring>
 #include <Arduino.h>
 #include "brick.hpp"

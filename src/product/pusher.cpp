@@ -1,42 +1,45 @@
 // The implementation file of pusher
 #include "pusher.hpp"
 pusher::pusher(uint8_t motor_pin, uint8_t tach_pin, uint16_t a_delay_length)
-    : component(motor_pin), _pin(motor_pin) {
-  _delay_handler = new delay_handler(a_delay_length);
-  _motor_ptr     = new motor(MAX_SPEED, motor_pin, tach_pin);
-  amount_bricks = 0;
+  : component(motor_pin), _pin(motor_pin) {
+  _delay_length = a_delay_length;
+  _motor_ptr = motor((uint8_t)128, (uint8_t)M2, (uint8_t)0);
+  brick_to_push = 0;
+  is_brick_empty = true;
 }
 
 pusher::~pusher() {
-  delete _delay_handler;
-  delete _motor_ptr;
+  Serial.println("pusher dead");
 }
 
 void pusher::open() {
-  move_pusher(FORWARD);
-  _state = OPEN;
+  _slate = true;
+  move_pusher(push_forward);
+  Serial.println("opening");
 }
 
 void pusher::close() {
-  move_pusher(BACKWARD);
-  _state = CLOSED;
+  _slate = 0;
+  move_pusher(push_backward);
+  Serial.println("closing");
 }
 
 void pusher::move_pusher(uint8_t forward) {
-  uint16_t start_time = millis();
+  uint32_t start_time = millis();
 
-  if (forward == FORWARD) {
-    _motor_ptr->run_forward();
-  } else if(forward == BACKWARD) {
-    _motor_ptr->run_backward();
+  if (forward == push_forward) {
+    _motor_ptr.run_forward();
+    Serial.println("motor forward");
+  } else if(forward == push_backward) {
+    _motor_ptr.run_backward();
   } else {
     return;
   }
-
+  Serial.println("gonna move it");
   while(start_time + 190 > millis()){
     //Serial.println("running motor");
   }
-  _motor_ptr->stop();
+  _motor_ptr.stop();
 }
 
 /**
@@ -44,11 +47,16 @@ void pusher::move_pusher(uint8_t forward) {
  * should be added after the last sensor
  * @param state the state the pusher needs to be in, true = open
  */
-void pusher::add_state(push_state state) {
-  bricks_to_push.push_back(new state_time(state, millis()));
-  amount_bricks++; //NEITHER SIZE NOR EMPTY METHOD IN DEQUE WORKED
-  Serial.print("state is: ");
-  Serial.println(state);
+void pusher::add_state(bool state) {
+  Serial.println("adding state");
+  brick_to_push = new state_time(state, millis());
+  is_brick_empty = false;
+  /*
+  Serial.print("current time is: ");
+  Serial.print(temp_start_time);
+  Serial.print("  registered time is: ");
+  Serial.println(brick_to_push->start_delay);
+  */
 }
 
 /**
@@ -57,32 +65,34 @@ void pusher::add_state(push_state state) {
  * @return true if the delay is over
  */
 bool pusher::act_on_brick() {
+  //Serial.print("st: ");
+  //Serial.println(_state);
   //Serial.print(amount_bricks); Serial.println("pusher");
 
-  if(amount_bricks != 0){
-    if(_delay_handler->should_do_now(bricks_to_push.front()->start_delay)) {
-      Serial.print("length queue is: ");
-      Serial.println(bricks_to_push.size());
-      Serial.print("current state:");
-      Serial.print(_state == OPEN ? "is open" : "is closed");
-      Serial.print("  Target state is: ");
-      Serial.println(bricks_to_push.front()->state);
-      if(bricks_to_push.front()->state != _state) {
-        if(bricks_to_push.front()->state == OPEN){
-          Serial.println("opening");
+  if(!is_brick_empty){
+    //Serial.print("size is: ");
+    //Serial.println(brick_to_push->start_delay);
+    if(brick_to_push->start_delay + _delay_length < millis()) {
+      if(brick_to_push->state != _slate) {
+        if(brick_to_push->state){
+          Serial.println("in the if");
           open();
         } else{
-          Serial.println("closing");
           close();
         }
       } else {
-        Serial.println("doing nothing");
+        Serial.println("gonna do nothing");
+        Serial.print("brick to push");
+        Serial.print(brick_to_push->state);
+        Serial.print("slate = ");
+        Serial.println(_slate);
       }
-      bricks_to_push.pop_front();
-      amount_bricks--;
+      delete brick_to_push;
+      brick_to_push = 0;
+      is_brick_empty = true;
       return true;
     }
-    //Serial.println("not yet");
+
   }
   return false;
 }

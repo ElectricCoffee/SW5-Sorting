@@ -135,7 +135,7 @@ void controller::read_sensors() { // WARN: may clash
     _brick_queue.pop();
     temp_brick = temp_brick.combine_with(br2);
     _bricks.push_front(temp_brick);
-    push_state state = _blueprint.is_brick_useful(temp_brick) ? OPEN : CLOSED;
+    bool state = _blueprint.is_brick_useful(temp_brick);
     _pusher->add_state(state);
   } // else do nothing
 }

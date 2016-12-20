@@ -2,12 +2,12 @@
 #define push_states_hpp
 #include<Arduino.h>
 
-enum push_state { CLOSED, OPEN };
+//enum push_state { OPEN, CLOSED };
 
 class state_time {
 public:
-  const push_state state;
-  const uint16_t start_delay; //the millis() time when the brick passed the last sensor
-  state_time(push_state, uint16_t);
+  const bool state;
+  const uint32_t start_delay; //the millis() time when the brick passed the last sensor
+  state_time(bool, uint32_t);
 };
 #endif

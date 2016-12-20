@@ -41,11 +41,13 @@ bool blueprint::is_brick_useful(brick a_brick) {
   /*for (deque_iterator  = _registered_bricks.begin();
        deque_iterator != _registered_bricks.end();
        deque_iterator++) {*/
-    if (_registered_bricks[deque_iterator] == a_brick) {
+    if (_registered_bricks[deque_iterator].size_x == a_brick.size_x) {
+      Serial.println("blueprint accepted it");
       deque_iterator++;
       return true;
     } // else continue looking
   //}
+
   return false;
 }
 
@@ -88,7 +90,8 @@ bool blueprint::is_brick_useful(brick a_brick) {
 }*/
 
 void blueprint::add_from_bytes(const brick_bytes bricks[], size_t arr_size) {
-  for (size_t i = 0; i < arr_size; i++) {
-    _registered_bricks.push_front(brick::from_byte_array(bricks[i]));
+  _registered_bricks.resize(arr_size);
+  for (size_t i = 0; i < arr_size; ++i) {
+    _registered_bricks[i] = (brick::from_byte_array(bricks[i]));
   }
 }

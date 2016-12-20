@@ -6,7 +6,7 @@
 #include "component.hpp"
 
 #define MIN_SPEED 1
-#define MAX_SPEED 255
+#define MAX_SPEED 254
 #define RAMP_UP_TIME 10
 #define M1 1
 #define M2 2
@@ -24,6 +24,7 @@ public:
 
   // con and destructors
   motor(uint8_t, uint8_t, uint8_t);
+  motor();
   ~motor();
 
   // methods

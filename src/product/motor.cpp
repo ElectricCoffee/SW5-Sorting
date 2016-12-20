@@ -1,6 +1,8 @@
 // The implementation file of src/motor
 #include "motor.hpp"
-
+motor::motor() : component(0){
+  //bla
+}
 /**
  * Constructs the motor object.
  * @param a_speed sets the speed of the motor, can be any value between 0 and 255.

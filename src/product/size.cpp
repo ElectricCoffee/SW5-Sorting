@@ -57,8 +57,8 @@ brick size::check_measuring() {
   }
   else {
     //this is when a brick has been made, but havent been read by controller
-    Serial.println("size");
-    return brick(0, get_size()/*, 0, 0*/);
+    //Serial.println("size");
+    return brick(0,0,0, get_size()/*, 0, 0*/);
   }
   return brick::empty_brick();
 }
