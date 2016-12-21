@@ -42,7 +42,6 @@ bool blueprint::is_brick_useful(brick a_brick) {
        deque_iterator != _registered_bricks.end();
        deque_iterator++) {*/
     if (_registered_bricks[deque_iterator].size_x == a_brick.size_x) {
-      Serial.println("blueprint accepted it");
       deque_iterator++;
       return true;
     } // else continue looking

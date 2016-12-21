@@ -31,8 +31,8 @@ void motor_pusher::move_pusher(uint8_t forward) {
   }
 
   while(start_time + 190 > millis()){
-    Serial.println("running motor");
-  } //get prettier way of doing this
+  } //this means wait 190 millis until continuing
+
   /* WE TRIED THIS IT DIDN'T WORK
 
   // run ~180 degrees forward

@@ -9,19 +9,16 @@ pusher::pusher(uint8_t motor_pin, uint8_t tach_pin, uint16_t a_delay_length)
 }
 
 pusher::~pusher() {
-  Serial.println("pusher dead");
 }
 
 void pusher::open() {
   _slate = true;
   move_pusher(push_forward);
-  Serial.println("opening");
 }
 
 void pusher::close() {
   _slate = 0;
   move_pusher(push_backward);
-  Serial.println("closing");
 }
 
 void pusher::move_pusher(uint8_t forward) {
@@ -29,13 +26,11 @@ void pusher::move_pusher(uint8_t forward) {
 
   if (forward == push_forward) {
     _motor_ptr.run_forward();
-    Serial.println("motor forward");
   } else if(forward == push_backward) {
     _motor_ptr.run_backward();
   } else {
     return;
   }
-  Serial.println("gonna move it");
   while(start_time + 190 > millis()){
     //Serial.println("running motor");
   }
@@ -48,7 +43,6 @@ void pusher::move_pusher(uint8_t forward) {
  * @param state the state the pusher needs to be in, true = open
  */
 void pusher::add_state(bool state) {
-  Serial.println("adding state");
   brick_to_push = new state_time(state, millis());
   is_brick_empty = false;
   /*
@@ -75,17 +69,12 @@ bool pusher::act_on_brick() {
     if(brick_to_push->start_delay + _delay_length < millis()) {
       if(brick_to_push->state != _slate) {
         if(brick_to_push->state){
-          Serial.println("in the if");
           open();
         } else{
           close();
         }
       } else {
-        Serial.println("gonna do nothing");
-        Serial.print("brick to push");
-        Serial.print(brick_to_push->state);
-        Serial.print("slate = ");
-        Serial.println(_slate);
+
       }
       delete brick_to_push;
       brick_to_push = 0;
